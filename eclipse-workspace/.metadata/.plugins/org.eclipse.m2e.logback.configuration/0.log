@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 2022-02-23 19:58:18,337 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is not available. Remote download required.
 2022-02-23 20:08:42,621 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
 2022-02-23 20:21:53,099 [ModalContext] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo1.maven.org/maven2/uk/co/markg/archetypes/java11-junit5/1.0/java11-junit5-1.0.jar
@@ -13,3 +14,6 @@
 2022-02-23 20:41:16,823 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started Server@5a6991f9{STARTING}[10.0.6,sto=0] @56797ms
 2022-02-23 21:16:55,163 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
 2022-02-23 21:22:02,541 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+=======
+2022-02-23 21:51:04,893 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+>>>>>>> Stashed changes
