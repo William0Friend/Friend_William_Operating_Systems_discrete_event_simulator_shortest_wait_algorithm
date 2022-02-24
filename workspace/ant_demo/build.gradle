@@ -1,0 +1,14 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    baseName = 'gradleExample'
+    version = '0.0.1-SNAPSHOT'
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+}
