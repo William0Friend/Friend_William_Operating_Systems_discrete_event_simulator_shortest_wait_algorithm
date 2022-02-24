@@ -1,0 +1,27 @@
+/**
+ * 
+ */
+package des_test;
+
+/**
+ * @author break
+ *
+ */
+public class des {
+
+	/**
+	 * 
+	 */
+	public des() {
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
