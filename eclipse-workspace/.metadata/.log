@@ -1,6 +1,9 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 !SESSION 2022-02-23 19:57:49.952 -----------------------------------------------
 =======
+=======
+>>>>>>> Stashed changes
 
 !ENTRY org.eclipse.equinox.p2.repository 2 0 2022-02-23 21:50:02.138
 !MESSAGE Using unsafe http transport to retrieve http://vrapper.sourceforge.net/update-site/stable, see CVE-2021-41033. Consider using https instead.
@@ -121,6 +124,9 @@ java.io.FileNotFoundException: /home/break/tools/gits/des/os_des_shortest_wait/e
 	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor.lambda$1(IDEWorkbenchAdvisor.java:554)
 	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
 !SESSION 2022-02-23 21:50:53.404 -----------------------------------------------
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 eclipse.buildId=4.22.0.I20211124-1800
 java.version=17.0.1
@@ -128,17 +134,23 @@ java.vendor=Eclipse Adoptium
 BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
 Framework arguments:  -product org.eclipse.epp.package.java.product
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
 
 !ENTRY org.eclipse.jface 2 0 2022-02-23 19:58:15.244
 !MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
 !SUBENTRY 1 org.eclipse.jface 2 0 2022-02-23 19:58:15.244
 =======
+=======
+>>>>>>> Stashed changes
 Command-line arguments:  -data file:/home/break/tools/gits/des/os_des_shortest_wait/eclipse-workspace/ -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
 
 !ENTRY org.eclipse.jface 2 0 2022-02-23 21:51:00.796
 !MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
 !SUBENTRY 1 org.eclipse.jface 2 0 2022-02-23 21:51:00.796
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 !MESSAGE A conflict occurred for CTRL+SHIFT+T:
 Binding(CTRL+SHIFT+T,
@@ -146,7 +158,11 @@ Binding(CTRL+SHIFT+T,
 		Open a type in a Java editor,
 		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1c411474,
+=======
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3487947c,
+>>>>>>> Stashed changes
 =======
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3487947c,
 >>>>>>> Stashed changes
@@ -158,17 +174,23 @@ Binding(CTRL+SHIFT+T,
 		,
 		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5e681097,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
 !SUBENTRY 1 org.eclipse.jface 2 0 2022-02-23 19:58:15.244
 =======
+=======
+>>>>>>> Stashed changes
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@77226121,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
 !SUBENTRY 1 org.eclipse.jface 2 0 2022-02-23 21:51:00.796
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 !MESSAGE A conflict occurred for ALT+SHIFT+R:
 Binding(ALT+SHIFT+R,
@@ -176,7 +198,11 @@ Binding(ALT+SHIFT+R,
 		Rename the selected element,
 		Category(org.eclipse.jdt.ui.category.refactoring,Refactor - Java,Java Refactoring Actions,true),
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@152891f8,
+=======
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3117ac8d,
+>>>>>>> Stashed changes
 =======
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3117ac8d,
 >>>>>>> Stashed changes
@@ -188,7 +214,11 @@ Binding(ALT+SHIFT+R,
 		Rename the selected item,
 		Category(org.eclipse.ui.category.file,File,null,true),
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1d2c253,
+=======
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@760c777d,
+>>>>>>> Stashed changes
 =======
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@760c777d,
 >>>>>>> Stashed changes
@@ -196,6 +226,7 @@ Binding(ALT+SHIFT+R,
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 !ENTRY org.eclipse.jdt.ui 4 10001 2022-02-23 20:05:01.113
 !MESSAGE Internal Error
@@ -462,6 +493,8 @@ java.lang.NullPointerException: Cannot invoke "org.eclipse.jdt.core.IJavaProject
 	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
 	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
 =======
+=======
+>>>>>>> Stashed changes
 !ENTRY org.eclipse.ui 4 4 2022-02-23 21:51:04.477
 !MESSAGE Unable to create part
 !STACK 1
@@ -470,11 +503,15 @@ org.eclipse.ui.PartInitException: Cannot determine URI for '/discrete_event_simu
 	at org.eclipse.ui.texteditor.AbstractTextEditor.init(AbstractTextEditor.java:3210)
 	at org.eclipse.ui.internal.EditorReference.initialize(EditorReference.java:353)
 	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.create(CompatibilityPart.java:344)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
@@ -509,6 +546,8 @@ java.lang.NullPointerException: Cannot invoke "org.eclipse.jdt.core.IJavaProject
 	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4581)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1154)
 =======
+=======
+>>>>>>> Stashed changes
 	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:58)
 	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:995)
 	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:960)
@@ -596,6 +635,9 @@ java.lang.NullPointerException: Cannot invoke "org.eclipse.jdt.core.IJavaProject
 	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:711)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1082)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1045)
@@ -618,6 +660,7 @@ java.lang.NullPointerException: Cannot invoke "org.eclipse.jdt.core.IJavaProject
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1440)
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
 !ENTRY org.eclipse.ui 4 0 2022-02-23 20:05:18.437
@@ -661,6 +704,8 @@ java.lang.NullPointerException: Cannot invoke "org.eclipse.jdt.core.IJavaProject
 	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
 	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
 =======
+=======
+>>>>>>> Stashed changes
 Caused by: org.eclipse.core.runtime.CoreException: Cannot determine URI for '/discrete_event_simulator_scheduling_algorithm_shortest_wait/src/module-info.java'.
 	at org.eclipse.core.internal.filebuffers.ResourceFileBuffer.create(ResourceFileBuffer.java:239)
 	at org.eclipse.core.internal.filebuffers.TextFileBufferManager.connect(TextFileBufferManager.java:115)
@@ -700,11 +745,15 @@ org.eclipse.core.runtime.CoreException: Cannot determine URI for '/discrete_even
 	at org.eclipse.ui.texteditor.AbstractTextEditor.init(AbstractTextEditor.java:3210)
 	at org.eclipse.ui.internal.EditorReference.initialize(EditorReference.java:353)
 	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.create(CompatibilityPart.java:344)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
@@ -739,6 +788,8 @@ java.lang.NullPointerException: Cannot invoke "org.eclipse.jdt.core.IJavaProject
 	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4581)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1154)
 =======
+=======
+>>>>>>> Stashed changes
 	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:58)
 	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:995)
 	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:960)
@@ -826,6 +877,7 @@ java.lang.NullPointerException: Cannot invoke "org.eclipse.jdt.core.IJavaProject
 	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:711)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1082)
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
 	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1045)
@@ -1112,6 +1164,8 @@ java.lang.Error: SWT Resource was not properly disposed
 	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:5126)
 	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4581)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1154)
+=======
+>>>>>>> Stashed changes
 	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1045)
 	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
@@ -1133,6 +1187,7 @@ java.lang.Error: SWT Resource was not properly disposed
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1440)
+<<<<<<< Updated upstream
 
 !ENTRY org.eclipse.ui.ide 4 4 2022-02-23 20:10:55.462
 !MESSAGE Not properly disposed SWT resource
@@ -4121,6 +4176,10 @@ Binding(ALT+SHIFT+R,
 
 !ENTRY net.sourceforge.vrapper.eclipse 1 0 2022-02-23 21:22:03.724
 !MESSAGE No .vrapperrc or _vrapperrc found.
+=======
+!SUBENTRY 2 org.eclipse.core.filebuffers 4 0 2022-02-23 21:51:04.481
+!MESSAGE Cannot determine URI for '/discrete_event_simulator_scheduling_algorithm_shortest_wait/src/module-info.java'.
+>>>>>>> Stashed changes
 =======
 !SUBENTRY 2 org.eclipse.core.filebuffers 4 0 2022-02-23 21:51:04.481
 !MESSAGE Cannot determine URI for '/discrete_event_simulator_scheduling_algorithm_shortest_wait/src/module-info.java'.
