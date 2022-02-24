@@ -1,2 +1,0 @@
-module discrete_event_simulator_scheduling_algorithm_shortest_wait {
-}
