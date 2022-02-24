@@ -1,2 +1,15 @@
 2022-02-23 19:58:18,337 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is not available. Remote download required.
 2022-02-23 20:08:42,621 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2022-02-23 20:21:53,099 [ModalContext] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo1.maven.org/maven2/uk/co/markg/archetypes/java11-junit5/1.0/java11-junit5-1.0.jar
+2022-02-23 20:21:53,144 [ModalContext] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo1.maven.org/maven2/uk/co/markg/archetypes/java11-junit5/1.0/java11-junit5-1.0.jar
+2022-02-23 20:21:53,168 [ModalContext] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo1.maven.org/maven2/uk/co/markg/archetypes/java11-junit5/1.0/java11-junit5-1.0.pom
+2022-02-23 20:21:53,193 [ModalContext] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo1.maven.org/maven2/uk/co/markg/archetypes/java11-junit5/1.0/java11-junit5-1.0.pom
+2022-02-23 20:30:45,035 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2022-02-23 20:40:36,012 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2022-02-23 20:41:16,738 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-10.0.6; built: 2021-06-29T15:28:56.259Z; git: 37e7731b4b142a882d73974ff3bec78d621bd674; jvm 17.0.1+12
+2022-02-23 20:41:16,767 [Start Help Server] INFO  o.e.j.s.s.DefaultSessionIdManager - Session workerName=node0
+2022-02-23 20:41:16,801 [Start Help Server] INFO  o.e.j.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@6b636d3a{/help,null,AVAILABLE}
+2022-02-23 20:41:16,811 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@3b4d0a21{HTTP/1.1, (http/1.1)}{127.0.0.1:40785}
+2022-02-23 20:41:16,823 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started Server@5a6991f9{STARTING}[10.0.6,sto=0] @56797ms
+2022-02-23 21:16:55,163 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2022-02-23 21:22:02,541 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
