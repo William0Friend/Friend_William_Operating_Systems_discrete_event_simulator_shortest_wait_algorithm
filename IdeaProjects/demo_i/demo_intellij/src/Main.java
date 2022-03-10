@@ -9,8 +9,21 @@ public class Main {
      *
      * @param args
      */
-
+    private void invalidArguments(){
+        //implement
+    }
+    private void invalidFile(){
+        //implement
+    }
+    private void  openAndPrepareProcess(String filename){
+        //implement
+    }
+    private void normalDistribution(int nProcess, float mean, float standardDeviation){
+        //implement
+    }
     public static void main(String[] args) {
-    System.out.println("Hello world!");
+        //implement
+        System.out.println("Hello world!");
+
   }
 }
