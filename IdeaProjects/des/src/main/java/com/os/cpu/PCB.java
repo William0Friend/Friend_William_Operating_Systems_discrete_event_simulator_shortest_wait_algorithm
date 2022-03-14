@@ -1,5 +1,7 @@
-import java.util.*;
-import com.github.cliftonlabs.json_simple.*;
+package com.os.cpu;
+
+
+
 
 public class PCB {
 
@@ -25,9 +27,7 @@ public class PCB {
     private float endTime;
     private float waitTime;
 
-    //clock
-    private int clock = 0;
-    private int clockCycles = 0;
+
 
     /**
      * Methods
@@ -92,10 +92,15 @@ public class PCB {
     public String getName() {
         return this.name;
     }
-    public PCB(String name, float burstTime, float arrivalTime){
+    public PCB(String name, float burstTime, float arrivalTime, float executed, float waitTime){
         this.name = name;
-        this.burstTime = burstTime;
+        this.waitTime = waitTime;
+        this.executed = executed;
         this.arrivalTime = arrivalTime;
+        this.burstTime = burstTime;
+        //this.remainingTime = remainingTime;
+        //this.beginTime = beginTime;
+        //this.endTime = endTime;
     }
 
     public float getWaitTime() {

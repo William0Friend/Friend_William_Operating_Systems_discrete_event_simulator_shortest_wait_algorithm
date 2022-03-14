@@ -1,0 +1,23 @@
+{
+  "fName": "Shobha",
+  "lName": "Shivakumar",
+  "age1": 28,
+  "address1":
+  {
+    "streetAdd": "4, Ibbani street",
+    "city1": "Bangalore",
+    "state1": "Karnataka",
+    "pinCode": 560064
+  },
+  "phNumbers":
+  [
+    {
+      "type1": "home1",
+      "no": "9738128018"
+    },
+    {
+      "type2": "fax1",
+      "no1": "6366182095"
+    }
+  ] }
+

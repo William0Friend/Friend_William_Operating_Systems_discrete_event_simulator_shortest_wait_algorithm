@@ -1,8 +1,8 @@
+package com.os.cpu;
 import java.io.*;
 import java.util.*;
 import com.github.cliftonlabs.json_simple.*;
-import PCB.java
-        ;
+
 public class Scheduler {
     /**Data
      * - nProcess: int
@@ -18,6 +18,13 @@ public class Scheduler {
     private float avgWaitTime;
     private float normalization = 0;
 
+    //clock
+    private int clock = 0;
+    private int clockCycles = 0;
+
+    public PCB [] pcb;
+    public Queue<PCB> readyQueue = new PriorityQueue<>();
+    public Queue<PCB> waitQueue = new PriorityQueue<>();
     /**Methods
      * # Scheduler(pcb: PCB[])
      * - normalization() void
@@ -28,10 +35,10 @@ public class Scheduler {
      * ~ preemptionTable(i: int, j: int, time: float): void
      */
     public Scheduler(PCB [] pcb) {
-        this.nProcess = getnProcess(PCB [] pcb);
+        this.nProcess = getnProcess();
         this.timeline = getTimeline(PCB [] pcb);
         this.avgExecutionTime = getAvgExecutionTime(PCB [] pcb);
-        this.avgWaitTime = getAvgWaitTime(PCB [] pcb)l
+        this.avgWaitTime = getAvgWaitTime(PCB [] pcb);
         //this.normalization = pcb[0];
     }
 
@@ -78,10 +85,12 @@ public class Scheduler {
     public void averageTime(){
         //implement...
         //avgWait + avgExe = ave?
+        aT = avgExecutionTime + avgWaitTime;
+        System.out.println(at);
     }
-    private String indentation(String text, int limit)
-    {
+    private String indentation(String text, int limit) {
         //implement...
+        return text;
     }
     public void resultTable(){
         //implement...

@@ -1,4 +1,5 @@
-package com.os.cpu;
+package org.example;
+
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;

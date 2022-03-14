@@ -1,4 +1,6 @@
-public class RR{
+package com.os.cpu;
+
+public class RR {
     /**Data
      * - quantum: float
      */
