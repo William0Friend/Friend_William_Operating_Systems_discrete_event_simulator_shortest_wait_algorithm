@@ -1,0 +1,1 @@
+[{"process":{"executionTime":3.767,"arrivalTime":0.0,"burstTime":3.767,"waitTime":0.0,"ProcessN":"p1"}},{"process":{"executionTime":4.763,"arrivalTime":0.0,"burstTime":1.904,"waitTime":0.0,"ProcessN":"p2"}},{"process":{"executionTime":3.768,"arrivalTime":0.0,"burstTime":3.768,"waitTime":0.0,"ProcessN":"p2"}}]

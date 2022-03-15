@@ -14,40 +14,43 @@ import org.json.simple.parser.ParseException;
 public class Main {
     public static void main(String[] args) {
         //write process.json
-        //First User
+        /*
+        //processesJSON1
+         */
+        //First Process
         JSONObject processDetails0 = new JSONObject();
         processDetails0.put("ProcessN", "Process0");
         processDetails0.put("waitTime", 0.000);
         processDetails0.put("executionTime", 3.767);
         processDetails0.put("arrivalTime", 0.000);
-        processDetails0.put("email", 3.767);
+        processDetails0.put("burstTime", 3.767);
 
 
-        //Second user
+        //Second Process
         JSONObject processDetails1 = new JSONObject();
         processDetails1.put("ProcessN", "Process1");
         processDetails1.put("waitTime", 0.000);
         processDetails1.put("executionTime", 1.904);
         processDetails1.put("arrivalTime", 4.763);
-        processDetails1.put("email", 1.904);
+        processDetails1.put("burstTime", 1.904);
 
-        // Third User
+        // Third Process
         JSONObject processDetails2 = new JSONObject();
         processDetails2.put("ProcessN", "Process2");
         processDetails2.put("waitTime", 0.000);
         processDetails2.put("executionTime", 3.768);
         processDetails2.put("arrivalTime", 0.000);
-        processDetails2.put("email", 3.768);
+        processDetails2.put("burstTime", 3.768);
 
-        //Add employees to list
+        //Add processes to list
         JSONArray processList = new JSONArray();
         processList.add(processDetails0);
         processList.add(processDetails1);
         processList.add(processDetails2);
 
         //Write JSON file
-        //try(FileWriter file = new FileWriter("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/processes.json"){
-        try (FileWriter file = new FileWriter("processes.json")) {
+        try(FileWriter file = new FileWriter("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/processesJSON1.json")){
+        //try (FileWriter file = new FileWriter("processes.json")) {
 
             file.write(processList.toJSONString());
             file.flush();
@@ -55,52 +58,72 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //read processes.json
-        JSONParser parser = new JSONParser();
-        JSONArray proc;
+
+        /*
+        //processesJSON2.json
+         */
+        //First Process
+        JSONObject processDetailsObj0 = new JSONObject();
+        processDetailsObj0.put("ProcessN", "p1");
+        processDetailsObj0.put("waitTime", 0.000);
+        processDetailsObj0.put("executionTime", 3.767);
+        processDetailsObj0.put("arrivalTime", 0.000);
+        processDetailsObj0.put("burstTime", 3.767);
+
+        JSONObject jsonProcessObject0 = new JSONObject();
+        jsonProcessObject0.put("process", processDetailsObj0);
+
+        //Second Process
+        JSONObject processDetailsObj1 = new JSONObject();
+        processDetailsObj1.put("ProcessN", "p2");
+        processDetailsObj1.put("waitTime", 0.000);
+        processDetailsObj1.put("executionTime", 4.763);
+        processDetailsObj1.put("arrivalTime", 0.000);
+        processDetailsObj1.put("burstTime", 1.904);
+
+        JSONObject jsonProcessObject1 = new JSONObject();
+        jsonProcessObject1.put("process", processDetailsObj1);
+
+        //Third Process
+        JSONObject processDetailsObj2 = new JSONObject();
+        processDetailsObj2.put("ProcessN", "p2");
+        processDetailsObj2.put("waitTime", 0.000);
+        processDetailsObj2.put("executionTime", 3.768);
+        processDetailsObj2.put("arrivalTime", 0.000);
+        processDetailsObj2.put("burstTime", 3.768);
+
+        JSONObject jsonProcessObject2 = new JSONObject();
+        jsonProcessObject2.put("process", processDetailsObj2);
+
+        //Add employees to list
+        JSONArray processArrayList = new JSONArray();
+        processArrayList.add(jsonProcessObject0);
+        processArrayList.add(jsonProcessObject1);
+        processArrayList.add(jsonProcessObject2);
+
+        //Write JSON file
+        try(FileWriter file = new FileWriter("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/processesJSON2.json")){
+        //try (FileWriter file = new FileWriter("employees.json")) {
+            //We can write any JSONArray or JSONObject instance to the file
+            file.write(processArrayList.toJSONString());
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         try {
-            // Object obj = parser.parse(new FileReader("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/crunchify.json"));
-            // Object obj =  parser.parse(new FileReader("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/processes.json"));
-            // JSONObject jsonObject = (JSONObject) parser.parse(new FileReader("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/processes.json"));
-            // A JSON object. Key value pairs are unordered. JSONObject supports java.util.Map interface.
-            /* Array
-              JSONParser parser = new JSONParser();
-              Object obj  = parser.parse(content);
-              JSONArray array = new JSONArray();
-              array.add(obj);
-             */
-            /* No array
-              JSONParser parser = new JSONParser();
-              Object obj  = parser.parse(content);
-             */
-            /* direct fix
-            JSONObject unitsObj = parser.parse(new FileReader("file.json");
-             */
-            //JSONObject jsonObject3 = (JSONObject) obj;
-            // A JSON array. JSONObject supports java.util.List interface.
-            //JSONArray companyList = (JSONArray) jsonObject.get("Company List");
-            //proc = (JSONArray) jsonObject.get("process");
-            // An iterator over a collection. Iterator takes the place of Enumeration in the Java Collections Framework.
-            // Iterators differ from enumerations in two ways:
-            // 1. Iterators allow the caller to remove elements from the underlying collection during the iteration with well-defined semantics.
-            // 2. Method names have been improved.
-            /*
-            //a
-            Iterator<JSONObject> iterator = proc.iterator();
-            while (iterator.hasNext()) {
-                System.out.println(iterator.next());
-            }
-            */
-            //b
-            //for (JSONObject object : (Iterable<JSONObject>) proc) {
-            //    System.out.println(object);
-            //}
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         List<PCB> pcbAL = new ArrayList<>();
         Queue<PCB> readyQueue = new PriorityQueue<>();
+        Queue<PCB> waitQueue = new PriorityQueue<>();
+        Queue<PCB> altQueue = new PriorityQueue<>();
         PCB[] pcbArr = new PCB[3];
+        //read processes.json
+        JSONParser parser = new JSONParser();
+        JSONArray proc = new JSONArray();
         System.out.println("Hello world!");
         //Contents of array 'pcbArr' are written to, but never read
 
@@ -239,3 +262,39 @@ public class Main {
             System.out.println(website);
     }
 */
+// Object obj = parser.parse(new FileReader("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/crunchify.json"));
+// Object obj =  parser.parse(new FileReader("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/processes.json"));
+// JSONObject jsonObject = (JSONObject) parser.parse(new FileReader("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/processes.json"));
+// A JSON object. Key value pairs are unordered. JSONObject supports java.util.Map interface.
+            /* Array
+              JSONParser parser = new JSONParser();
+              Object obj  = parser.parse(content);
+              JSONArray array = new JSONArray();
+              array.add(obj);
+             */
+            /* No array
+              JSONParser parser = new JSONParser();
+              Object obj  = parser.parse(content);
+             */
+            /* direct fix
+            JSONObject unitsObj = parser.parse(new FileReader("file.json");
+             */
+//JSONObject jsonObject3 = (JSONObject) obj;
+// A JSON array. JSONObject supports java.util.List interface.
+//JSONArray companyList = (JSONArray) jsonObject.get("Company List");
+//proc = (JSONArray) jsonObject.get("process");
+// An iterator over a collection. Iterator takes the place of Enumeration in the Java Collections Framework.
+// Iterators differ from enumerations in two ways:
+// 1. Iterators allow the caller to remove elements from the underlying collection during the iteration with well-defined semantics.
+// 2. Method names have been improved.
+            /*
+            //a
+            Iterator<JSONObject> iterator = proc.iterator();
+            while (iterator.hasNext()) {
+                System.out.println(iterator.next());
+            }
+            */
+//b
+//for (JSONObject object : (Iterable<JSONObject>) proc) {
+//    System.out.println(object);
+//}
