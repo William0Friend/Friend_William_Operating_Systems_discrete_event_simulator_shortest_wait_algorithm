@@ -4,17 +4,17 @@ import java.util.*;
 public class Scheduler {
     /**Data
      * - nProcess: int
-     * - timeline: float = 0
-     * - avgExecutionTime : float
-     * - avgWaitTime: float
-     * - normalization: float
+     * - timeline: Double = 0
+     * - avgExecutionTime : Double
+     * - avgWaitTime: Double
+     * - normalization: Double
      *
      */
     private int nProcess;
-    private float timeline;
-    private float avgExecutionTime;
-    private float avgWaitTime;
-    private float normalization = 0;
+    private Double timeline;
+    private Double avgExecutionTime;
+    private Double avgWaitTime;
+    private Double normalization = 0.0;
 
     //clock
     private int clock = 0;
@@ -30,13 +30,13 @@ public class Scheduler {
      * ~ averageTime(): void
      * - indentation(text: String, limit: int): String
      * ~ resultTable(): void
-     * ~ preemptionTable(i: int, j: int, time: float): void
+     * ~ preemptionTable(i: int, j: int, time: Double): void
      */
     public Scheduler(PCB [] pcb) {
         this.nProcess = 0; //getnProcess();
-        this.timeline = 0; //getTimeline();// [] pcb);
-        this.avgExecutionTime = 0; //getAvgExecutionTime(PCB [] pcb);
-        this.avgWaitTime = 0; //getAvgWaitTime(PCB [] pcb);
+        this.timeline = 0.0; //getTimeline();// [] pcb);
+        this.avgExecutionTime = 0.0; //getAvgExecutionTime(PCB [] pcb);
+        this.avgWaitTime = 0.0; //getAvgWaitTime(PCB [] pcb);
         //this.normalization = pcb[0];
     }
 
@@ -81,15 +81,15 @@ public class Scheduler {
      * @param pcb
      * @return
      */
-    public float getAvgWaitTime(PCB [] pcb){
-        float aWT = 0;
+    public Double getAvgWaitTime(PCB [] pcb){
+        Double aWT = 0.0;
         for(PCB i :  pcb) {
             aWT += i.getWaitTime();
         }
         return aWT /= nProcess;
     }
-    public float getTimeline(PCB [] pcb){
-        float tl = 0;
+    public Double getTimeline(PCB [] pcb){
+        Double tl = 0.0;
         for(PCB i :  pcb) {
             tl = i.getEndTime() - i.getBeginTime();
         }
@@ -102,8 +102,8 @@ public class Scheduler {
         }
         return nP;
     }
-    public float getAvgExecutionTime(PCB [] pcb){
-        float aET = 0;
+    public Double getAvgExecutionTime(PCB [] pcb){
+        Double aET = 0.0;
         for(PCB i :  pcb) {
             aET += i.getExecuted();
         }
@@ -124,7 +124,7 @@ public class Scheduler {
     public void averageTime(){
         //implement...
         //avgWait + avgExe = ave?
-        float aT = avgExecutionTime + avgWaitTime;
+        Double aT = avgExecutionTime + avgWaitTime;
         System.out.println(aT);
     }
     private String indentation(String text, int limit) {
@@ -134,7 +134,7 @@ public class Scheduler {
     public void resultTable(){
         //implement...
     }
-    public void preemptionTable(int i, int j, float time){
+    public void preemptionTable(int i, int j, Double time){
         //implement...
     }
 }

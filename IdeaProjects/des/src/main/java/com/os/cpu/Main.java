@@ -1,11 +1,9 @@
 package com.os.cpu;
-
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileReader;
-
 import java.util.*;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -13,10 +11,10 @@ import org.json.simple.parser.ParseException;
 
 public class Main {
     public static void main(String[] args) {
-        //write process.json
-        /*
-        //processesJSON1
-         */
+//write process.json
+/*
+//processesJSON1
+*/
         //First Process
         JSONObject processDetails0 = new JSONObject();
         processDetails0.put("ProcessN", "Process0");
@@ -24,7 +22,6 @@ public class Main {
         processDetails0.put("executionTime", 3.767);
         processDetails0.put("arrivalTime", 0.000);
         processDetails0.put("burstTime", 3.767);
-
 
         //Second Process
         JSONObject processDetails1 = new JSONObject();
@@ -47,21 +44,17 @@ public class Main {
         processList.add(processDetails0);
         processList.add(processDetails1);
         processList.add(processDetails2);
-
         //Write JSON file
-        try(FileWriter file = new FileWriter("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/processesJSON1.json")){
-        //try (FileWriter file = new FileWriter("processes.json")) {
-
+        try (FileWriter file = new FileWriter("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/processesJSON1.json")) {
+            //try (FileWriter file = new FileWriter("processes.json")) {
             file.write(processList.toJSONString());
             file.flush();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        /*
-        //processesJSON2.json
-         */
+/*
+//processesJSON2.json
+*/
         //First Process
         JSONObject processDetailsObj0 = new JSONObject();
         processDetailsObj0.put("ProcessN", "p1");
@@ -102,12 +95,13 @@ public class Main {
         processArrayList.add(jsonProcessObject2);
 
         //Write JSON file
-        try(FileWriter file = new FileWriter("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/processesJSON2.json")){
-        //try (FileWriter file = new FileWriter("employees.json")) {
+        try (FileWriter file = new FileWriter("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/processesJSON2.json")) {
+            //try (FileWriter file = new FileWriter("employees.json")) {
             //We can write any JSONArray or JSONObject instance to the file
             file.write(processArrayList.toJSONString());
             file.flush();
-
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -115,38 +109,211 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+/*
+// read processesJSON2.json
+ */
+//JSON parser object to parse read file
+        JSONParser jsonParser2 = new JSONParser();
 
+        try (FileReader reader = new FileReader("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/processesJSON2.json")) {
+            //try (FileReader reader = new FileReader("employees.json"))
+            //{
+            //Read JSON file
+            Object obj = jsonParser2.parse(reader);
+            JSONArray processArrayList2 = (JSONArray) obj;
+            System.out.println(processArrayList2);
+            //Iterate over process array
+            processArrayList2.forEach(pro -> parseProcessObject((JSONObject) pro));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         List<PCB> pcbAL = new ArrayList<>();
         Queue<PCB> readyQueue = new PriorityQueue<>();
         Queue<PCB> waitQueue = new PriorityQueue<>();
         Queue<PCB> altQueue = new PriorityQueue<>();
-        PCB[] pcbArr = new PCB[3];
-        //read processes.json
-        JSONParser parser = new JSONParser();
-        JSONArray proc = new JSONArray();
-        System.out.println("Hello world!");
         //Contents of array 'pcbArr' are written to, but never read
-
         /* Example JSON
           {"executionTime":3.767,"arrivalTime":0.0,"burstTime":3.767,"processN":"Process0","waitTime":0.0}
           {"executionTime":1.904,"arrivalTime":4.763,"burstTime":1.904,"processN":"Process1","waitTime":0.0}
           {"executionTime":3.767,"arrivalTime":0.0,"burstTime":3.767,"processN":"Process2","waitTime":0.0}
          */
-        //Create 3 PCB to hold the processes
-        PCB pcb0 = new PCB();
-        PCB pcb1 = new PCB();
-        PCB pcb2 = new PCB();
-        //Create PCB array for easy looping
-        pcbArr[0] = pcb0;
-        pcbArr[1] = pcb1;
-        pcbArr[2] = pcb2;
-        for (PCB x : pcbArr) {
-            x.print();
+    //Create 3 PCB to hold the processes
+    PCB pcb0 = new PCB();
+    PCB pcb1 = new PCB();
+    PCB pcb2 = new PCB();
+    //Create PCB array for easy looping
+    List<PCB> pcbArrList = new ArrayList<PCB>();
+    pcbArrList.add(pcb0);//pcb0); //=pcb0;
+    pcbArrList.add(pcb1); //=pcb1;
+    pcbArrList.add(pcb2); //=pcb2;
+    for(PCB x : pcbArrList){
+        System.out.println("Starting \"Check PCB Object\"...");
+        x.print();
+        System.out.println("Ending \"Check PCB Object\"...");
+    }
+    /*
+    JSONObject jObj = jsonParser2.parse(reader);
+        for(PCB y : pcbArrList){
+            setProcessControlBlock(y);
         }
+*/
+        JSONParser jsonParser3 = new JSONParser();
 
+        try (FileReader jsonReader = new FileReader("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/processesJSON2.json")) {
+            //try (FileReader reader = new FileReader("employees.json"))
+            //{
+            //Read JSON file
+            Object obj = jsonParser2.parse(jsonReader);
+            //JSONObject jsonObj = (JSONObject) obj;
+            //System.out.println(jsonObj);
+            JSONArray jsonArray = (JSONArray) obj;
+            //PCB array to hold return
+            List<PCB> pcbArray = new ArrayList<PCB>();
+            //Iterate over process array
+            jsonArray.forEach(json  -> pcbArray.add(createProcessControlBlockFromJson((JSONObject) json)));
+            //Print out and verify pcbArray which can now be given to scheduler
+            System.out.println("Starting \"Verifying pcbArray and createPCB()\"...");
+            int count = 0;
+            for(PCB x : pcbArray){
+                System.out.println("Start PCB at index " + count + ": ");
+                x.print();
+                System.out.println("End PCB at index " + count);
+                count += 1;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+}
+    private static void parseProcessObject(JSONObject proc) {
+        //Get
+        JSONObject processObject = (JSONObject) proc.get("process");
+        //Get
+        String name = (String) processObject.get("ProcessN");
+        System.out.println(name);
+        //Get
+        Double waitTime = (Double) processObject.get("waitTime");
+        System.out.println(waitTime);
+        //Get
+        Double executionTime = (Double) processObject.get("executionTime");
+        System.out.println(executionTime);
+        //Get
+        Double arrivalTime = (Double) processObject.get("arrivalTime");
+        System.out.println(arrivalTime);
+        //Get
+        Double burstTime = (Double) processObject.get("burstTime");
+        System.out.println(burstTime);
+    }
+    private static void setProcessControlBlock(JSONObject proc, PCB pcb) {
+        //PCB pcb = new PCB();
+        //Get
+        System.out.println("Started setPCB()...");
+        JSONObject processObject = (JSONObject) proc.get("process");
+        //Get
+        String name = (String) processObject.get("ProcessN");
+        pcb.setName(name);
+        System.out.println("ProcessN: " + name + " , ");
+        //Get
+        Double waitTime = (Double) processObject.get("waitTime");
+        pcb.setWaitTime(waitTime);
+        System.out.println("waitTime: " + waitTime + " , ");
+        //Get
+        Double executionTime = (Double) processObject.get("executionTime");
+        pcb.setExecuted(executionTime);
+        System.out.println("executionTime: " + executionTime + " , ");
+        //Get
+        Double arrivalTime = (Double) processObject.get("arrivalTime");
+        pcb.setArrivalTime(arrivalTime);
+        System.out.println("arrivalTime: " + arrivalTime + " , ");
+        //Get
+        Double burstTime = (Double) processObject.get("burstTime");
+        pcb.setBurstTime(burstTime);
+        System.out.println("burstTime: " + burstTime + " , ");
+        //Verify
+        System.out.println("Successfully Created from JSON!");
+    }
+    private static PCB createProcessControlBlockFromJson(JSONObject proc) {
+        //
+        System.out.println("Starting createPCBFromJSON...");
+        // create new pcb
+        PCB pcb = new PCB();
+        //Get
+        JSONObject processObject = (JSONObject) proc.get("process");
+        //Get
+        String name = (String) processObject.get("ProcessN");
+        pcb.setName(name);
+        System.out.println("ProcessN: " + name + " , ");
+        //Get
+        Double waitTime = (Double) processObject.get("waitTime");
+        pcb.setWaitTime(waitTime);
+        System.out.println("waitTime: " + waitTime + " , ");
+        //Get
+        Double executionTime = (Double) processObject.get("executionTime");
+        pcb.setExecuted(executionTime);
+        System.out.println("executionTime: " + executionTime + " , ");
+        //Get
+        Double arrivalTime = (Double) processObject.get("arrivalTime");
+        pcb.setArrivalTime(arrivalTime);
+        System.out.println("arrivalTime: " + arrivalTime + " , ");
+        //Get
+        Double burstTime = (Double) processObject.get("burstTime");
+        pcb.setBurstTime(burstTime);
+        System.out.println("burstTime: " + burstTime + " , ");
 
+        //Verify
+        System.out.println("Successfully Created from JSON!");
+        //return new PCB
+        return pcb;
     }
 }
+
+
+/*
+//Read processJSON1.json
+*/
+        /*
+        // JSON parser object to parse read file
+        JSONParser jsonParser = new JSONParser();
+        try(FileReader reader = new FileReader("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/processesJSON1.json"))
+        {
+        //try (FileReader reader = new FileReader("users.json")) {
+            // Read JSON file
+            Object obj = jsonParser.parse(reader);
+            JSONArray processList2 = (JSONArray) obj;
+            // Iterate over employee array
+            processList2.forEach(process -> parseJSONObject((JSONObject) process));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        };
+
+    private static void parseJSONObject(JSONObject proc) {
+        JSONObject process = new JSONObject() proc.get();
+        // Get process name
+        String name = (String) process.get("ProcessN");
+        System.out.println(name);
+        // Get
+        String firstName = (float) process.get("firstName");
+        System.out.println(firstName);
+        // Get
+        String lastName = (float) process.get("lastName");
+        System.out.println(lastName);
+        // Get
+        String userName = (float) process.get("userName");
+        System.out.println(userName);
+        // Get user email name
+        String email = (float) process.get("email");
+        System.out.println(email);
+    }
+    */
 
 
 

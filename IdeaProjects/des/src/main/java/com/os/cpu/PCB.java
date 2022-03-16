@@ -7,46 +7,46 @@ public class PCB {
     /**
      *  Data
      * - name : String
-     * - burstTime: float
-     * - arrivalTime: float
-     * - remainingTime: float
-     * - executed: float
-     * - beginTime: float
-     * - endTime: float
-     * - waitTime: float
+     * - burstTime: Double
+     * - arrivalTime: Double
+     * - remainingTime: Double
+     * - executed: Double
+     * - beginTime: Double
+     * - endTime: Double
+     * - waitTime: Double
      * - clock: int
      * - clockcycles: int
      */
     private String name;
-    private float burstTime;
-    private float arrivalTime;
-    private float executed;
-    private float waitTime;
-    private float remainingTime = 0;
-    private float beginTime = 0;
-    private float endTime = 0;
+    private Double burstTime;
+    private Double arrivalTime;
+    private Double executed;
+    private Double waitTime;
+    private Double remainingTime = 0.0;
+    private Double beginTime = 0.0;
+    private Double endTime = 0.0;
     public PCB(String name) {
         this.name = name;
     }
 
     /**
      * Methods
-     * ~ getWaitTime(): float
-     * ~ setWaitTime(waitTime: float): void
-     * ~ changeWaitTime(value: float): void
-     * ~ PCB(name: String, burstTime: float, arrivalTime: float)
+     * ~ getWaitTime(): Double
+     * ~ setWaitTime(waitTime: Double): void
+     * ~ changeWaitTime(value: Double): void
+     * ~ PCB(name: String, burstTime: Double, arrivalTime: Double)
      * ~ getName(): String
      * ~ setName(String name)
-     * ~ getBurstTime(): float
-     * # setBurstTime(burstTime: float): void
-     * ~ getBeginTime(): float
-     * ~ setBeginTime(beginTime: float): void
-     * ~ getEndTime(): float
-     * ~ setEndTime(endTime: float): void
-     * ~ getRemainingTime(): float
-     * ~ setRemainingTime(remainingTime: float): void
-     * ~ getExecuted(): float
-     * ~ setExecuted(executed: float): void
+     * ~ getBurstTime(): Double
+     * # setBurstTime(burstTime: Double): void
+     * ~ getBeginTime(): Double
+     * ~ setBeginTime(beginTime: Double): void
+     * ~ getEndTime(): Double
+     * ~ setEndTime(endTime: Double): void
+     * ~ getRemainingTime(): Double
+     * ~ setRemainingTime(remainingTime: Double): void
+     * ~ getExecuted(): Double
+     * ~ setExecuted(executed: Double): void
      * ~ getArrivalTime(arrivalTime: int) void
      *{"executionTime":3.767,"arrivalTime":0.0,"burstTime":3.767,"processN":"Process0","waitTime":0.0}
      * {"executionTime":1.904,"arrivalTime":4.763,"burstTime":1.904,"processN":"Process1","waitTime":0.0}
@@ -55,15 +55,15 @@ public class PCB {
 
     public PCB(){
         this.name = "null";
-        this.waitTime = 0;
-        this.executed = 0;
-        this.arrivalTime = 0;
-        this.burstTime = 0;
+        this.waitTime = 0.0;
+        this.executed = 0.0;
+        this.arrivalTime = 0.0;
+        this.burstTime = 0.0;
         //this.remainingTime = remainingTime;
         //this.beginTime = beginTime;
         //this.endTime = endTime;
     }
-    public PCB(String name, float waitTime,float executed, float arrivalTime, float burstTime ){
+    public PCB(String name, Double waitTime,Double executed, Double arrivalTime, Double burstTime ){
         this.name = name;
         this.waitTime = waitTime;
         this.executed = executed;
@@ -79,48 +79,48 @@ public class PCB {
                          "WaitTime: " + this.waitTime + "\n" +
                          "Executed: " + this.executed + "\n" +
                          "ArrivalTime: " + this.arrivalTime + "\n" +
-                         "BurstTime" + this.burstTime + "\n" +
-                         "RemainingTime" + this.remainingTime + "\n" +
+                         "BurstTime: " + this.burstTime + "\n" +
+                         "RemainingTime: " + this.remainingTime + "\n" +
                          "BeginTime: " + this.beginTime + "\n" +
                          "EndTime: " + this.endTime + "\n");
         System.out.println("]");
         System.out.println();
     }
-    public void setArrivalTime(float arrivalTime){
+    public void setArrivalTime(Double arrivalTime){
         this.arrivalTime = arrivalTime;
     }
-    public float getArrivalTime() {
+    public Double getArrivalTime() {
         return this.arrivalTime;
     }
-    public void setExecuted(float executed) {
+    public void setExecuted(Double executed) {
         this.executed = executed;
     }
-    public float getExecuted(){
+    public Double getExecuted(){
         return executed;
     }
-    public void setRemainingTime(float remainingTime){
+    public void setRemainingTime(Double remainingTime){
         this.remainingTime = remainingTime;
     }
-    public float getRemainingTime(){
+    public Double getRemainingTime(){
         return this.remainingTime;
     }
-    public void setEndTime(float endTime){
+    public void setEndTime(Double endTime){
         this.endTime = endTime;
     }
-    public float getEndTime() {
+    public Double getEndTime() {
         return endTime;
     }
-    public void setBeginTime(float beginTime){
+    public void setBeginTime(Double beginTime){
         this.beginTime = beginTime;
     }
-    public float getBeginTime(){
+    public Double getBeginTime(){
         return this.beginTime;
     }
 
-    public void setBurstTime(float burstTime) {
+    public void setBurstTime(Double burstTime) {
         this.burstTime = burstTime;
     }
-    public float getBurstTime(){
+    public Double getBurstTime(){
         return this.burstTime;
     }
     public void setName(String name){
@@ -130,13 +130,13 @@ public class PCB {
         return this.name;
     }
 
-    public float getWaitTime() {
+    public Double getWaitTime() {
         return this.waitTime;
     }
-    public void setWaitTime(float waitTime) {
+    public void setWaitTime(Double waitTime) {
         this.waitTime = waitTime;
     }
-    public void changeWaitTime(float value) {
+    public void changeWaitTime(Double value) {
         this.waitTime = value;
     }
 
