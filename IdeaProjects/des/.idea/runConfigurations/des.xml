@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="des" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+  <configuration default="false" name="des" type="MavenRunConfiguration" factoryName="Maven">
     <MavenSettings>
       <option name="myGeneralSettings" />
       <option name="myRunnerSettings" />
@@ -9,7 +9,11 @@
             <set />
           </option>
           <option name="goals">
-            <list />
+            <list>
+              <option value="compiler:compile" />
+              <option value="target/Main-1.0-SNAPSHOT.jar" />
+              <option value="com.os.cpu.Main" />
+            </list>
           </option>
           <option name="pomFileName" />
           <option name="profilesMap">

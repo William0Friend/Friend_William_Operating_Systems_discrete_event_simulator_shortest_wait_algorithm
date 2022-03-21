@@ -57,7 +57,7 @@ public class Main {
 */
         //First Process
         JSONObject processDetailsObj0 = new JSONObject();
-        processDetailsObj0.put("ProcessN", "p1");
+        processDetailsObj0.put("ProcessN", "1");
         processDetailsObj0.put("waitTime", 0.000);
         processDetailsObj0.put("executionTime", 3.767);
         processDetailsObj0.put("arrivalTime", 0.000);
@@ -68,7 +68,7 @@ public class Main {
 
         //Second Process
         JSONObject processDetailsObj1 = new JSONObject();
-        processDetailsObj1.put("ProcessN", "p2");
+        processDetailsObj1.put("ProcessN", "2");
         processDetailsObj1.put("waitTime", 0.000);
         processDetailsObj1.put("executionTime", 4.763);
         processDetailsObj1.put("arrivalTime", 0.000);
@@ -79,7 +79,7 @@ public class Main {
 
         //Third Process
         JSONObject processDetailsObj2 = new JSONObject();
-        processDetailsObj2.put("ProcessN", "p2");
+        processDetailsObj2.put("ProcessN", "3");
         processDetailsObj2.put("waitTime", 0.000);
         processDetailsObj2.put("executionTime", 3.768);
         processDetailsObj2.put("arrivalTime", 0.000);
@@ -100,7 +100,7 @@ public class Main {
             //We can write any JSONArray or JSONObject instance to the file
             file.write(processArrayList.toJSONString());
             file.flush();
-        }catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
@@ -141,20 +141,20 @@ public class Main {
           {"executionTime":1.904,"arrivalTime":4.763,"burstTime":1.904,"processN":"Process1","waitTime":0.0}
           {"executionTime":3.767,"arrivalTime":0.0,"burstTime":3.767,"processN":"Process2","waitTime":0.0}
          */
-    //Create 3 PCB to hold the processes
-    PCB pcb0 = new PCB();
-    PCB pcb1 = new PCB();
-    PCB pcb2 = new PCB();
-    //Create PCB array for easy looping
-    List<PCB> pcbArrList = new ArrayList<PCB>();
-    pcbArrList.add(pcb0);//pcb0); //=pcb0;
-    pcbArrList.add(pcb1); //=pcb1;
-    pcbArrList.add(pcb2); //=pcb2;
-    for(PCB x : pcbArrList){
-        System.out.println("Starting \"Check PCB Object\"...");
-        x.print();
-        System.out.println("Ending \"Check PCB Object\"...");
-    }
+        //Create 3 PCB to hold the processes
+        PCB pcb0 = new PCB();
+        PCB pcb1 = new PCB();
+        PCB pcb2 = new PCB();
+        //Create PCB array for easy looping
+        List<PCB> pcbArrList = new ArrayList<PCB>();
+        pcbArrList.add(pcb0);//pcb0); //=pcb0;
+        pcbArrList.add(pcb1); //=pcb1;
+        pcbArrList.add(pcb2); //=pcb2;
+        for (PCB x : pcbArrList) {
+            System.out.println("Starting \"Check PCB Object\"...");
+            x.print();
+            System.out.println("Ending \"Check PCB Object\"...");
+        }
     /*
     JSONObject jObj = jsonParser2.parse(reader);
         for(PCB y : pcbArrList){
@@ -163,6 +163,7 @@ public class Main {
 */
         JSONParser jsonParser3 = new JSONParser();
 
+        List<PCB> pcbArray = null;
         try (FileReader jsonReader = new FileReader("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/processesJSON2.json")) {
             //try (FileReader reader = new FileReader("employees.json"))
             //{
@@ -172,17 +173,23 @@ public class Main {
             //System.out.println(jsonObj);
             JSONArray jsonArray = (JSONArray) obj;
             //PCB array to hold return
-            List<PCB> pcbArray = new ArrayList<PCB>();
+            pcbArray = new ArrayList<PCB>();
             //Iterate over process array
-            jsonArray.forEach(json  -> pcbArray.add(createProcessControlBlockFromJson((JSONObject) json)));
+            //Lambda should use final so created constant copy
+            List<PCB> finalPcbArray = pcbArray;
+            jsonArray.forEach(json -> finalPcbArray.add(createProcessControlBlockFromJson((JSONObject) json)));
             //Print out and verify pcbArray which can now be given to scheduler
             System.out.println("Starting \"Verifying pcbArray and createPCB()\"...");
             int count = 0;
-            for(PCB x : pcbArray){
+            for (PCB x : pcbArray) {
                 System.out.println("Start PCB at index " + count + ": ");
                 x.print();
                 System.out.println("End PCB at index " + count);
                 count += 1;
+
+                pcbArray = finalPcbArray;
+
+
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -191,7 +198,17 @@ public class Main {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-}
+        for(PCB pcb : pcbArray){
+            pcb.print();
+        }
+        //create static array
+        PCB [] pcb = new PCB[3];
+
+        //test scheduler class
+        //Scheduler scheduler = new Scheduler(PCB [] pcb);
+
+
+    }
     private static void parseProcessObject(JSONObject proc) {
         //Get
         JSONObject processObject = (JSONObject) proc.get("process");

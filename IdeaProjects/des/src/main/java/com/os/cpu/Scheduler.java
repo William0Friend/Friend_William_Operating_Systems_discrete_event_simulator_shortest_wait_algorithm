@@ -10,19 +10,23 @@ public class Scheduler {
      * - normalization: Double
      *
      */
+    //total number of processes
     private int nProcess;
+    //to keep track of time
     private Double timeline;
+    //returns average execution time of all processes OR
+    // (total execution) / nProcesses
     private Double avgExecutionTime;
+    //returns average wait time of all processes OR
+    // (total wait) / nProcesses
     private Double avgWaitTime;
+    //for normalizing time when it gets out of control
     private Double normalization = 0.0;
 
     //clock
     private int clock = 0;
     private int clockCycles = 0;
 
-    public PCB [] pcb;
-    public Queue<PCB> readyQueue = new PriorityQueue<>();
-    public Queue<PCB> waitQueue = new PriorityQueue<>();
     /**Methods
      * # Scheduler(pcb: PCB[])
      * - normalization() void
