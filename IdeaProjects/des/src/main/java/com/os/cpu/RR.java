@@ -1,6 +1,6 @@
 package com.os.cpu;
 
-public class RR extends Scheduler {
+class RR extends Scheduler {
     /**
      * Methods
      * # Scheduler(pcb: PCB[])
@@ -15,6 +15,26 @@ public class RR extends Scheduler {
      */
     public RR(PCB[] pcb) {
         super(pcb);
+    }
+
+    @Override
+    void normalization() {
+
+    }
+
+    @Override
+    void sortPcb() {
+
+    }
+
+    @Override
+    void resultTable() {
+
+    }
+
+    @Override
+    void preemptionTable(int i, int j, Double time) {
+
     }
     /**Data
      * - quantum: float

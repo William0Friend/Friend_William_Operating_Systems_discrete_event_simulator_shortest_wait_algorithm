@@ -1,6 +1,7 @@
 package com.os.cpu;
 
-abstract class Scheduler {
+public class vScheduler {
+
     /**Data
      * - nProcess: int
      * - timeline: Double = 0
@@ -46,28 +47,7 @@ abstract class Scheduler {
      * @param pcb
      * @return
      */
-    public Scheduler(PCB [] pcb) {
-        //this.nProcess = 0;
-        //this.nProcess = setnProcess(pcb);
-        setnProcess(pcb);
-        //this.timeline = 0.0;
-        //this.timeline = setTimeline(pcb);
-        setTimeline(pcb);
-        //this.avgExecutionTime = 0.0;
-        //this.avgExecutionTime = setAvgExecutionTime(pcb);
-        setAvgExecutionTime(pcb);
-        //this.avgWaitTime = 0.0;
-        //this.avgWaitTime = setAvgWaitTime(pcb);
-        setAvgWaitTime(pcb);
-        //this.totalBurstTime = setTotalBurstTime(pcb);
-        setTotalBurstTime(pcb);
-        //this.averageTime = setAverageTime();
-        setAverageTime(pcb);
-        //this.totalTime = setTotalTime();
-        setTotalTime(pcb);
-        //normalization still needs implementation
-        this.normalization = 0.0;
-    }
+    public vScheduler(PCB... pcb);
     private static void setTimeline(PCB [] pcb){
         //Double tl = 0.0;
         for(PCB i :  pcb) {
@@ -107,9 +87,7 @@ abstract class Scheduler {
         avgExecutionTime = aET / nProcess;
         //return aET /= nProcess;
     }
-    private static Double getAvgExecutionTime(){
-        return avgExecutionTime;
-    }
+    abstract private static Double getAvgExecutionTime();
     private static void setAvgBurstTime(PCB [] pcb){
         Double aBT = 0.0;
         for(PCB i :  pcb) {
@@ -161,51 +139,12 @@ abstract class Scheduler {
         return text;
     }
     abstract void normalization();
-        //implement...
-        //this.normalization = normalization;
+    //implement...
+    //this.normalization = normalization;
     abstract void sortPcb();
-        //implement...
+    //implement...
     abstract void resultTable();
-        //implement...
+    //implement...
     abstract void preemptionTable(int i, int j, Double time);
-        //implement...
+    //implement...
 }
-/**
-     * void cancelAll(Collection<TimerTask> c) {
-        *     for (Iterator<TimerTask> i = c.iterator(); i.hasNext(); )
-        *         i.next().cancel();
-        * }
-        *
-        * void cancelAll(Collection<TimerTask> c) {
-        *     for (TimerTask t : c)
-        *         t.cancel();
-        * }
-        *
-        * List suits = ...;
-        * List ranks = ...;
-        * List sortedDeck = new ArrayList();
-        *
-        * // BROKEN - throws NoSuchElementException!
-        * for (Iterator i = suits.iterator(); i.hasNext(); )
-        *     for (Iterator j = ranks.iterator(); j.hasNext(); )
-        *         sortedDeck.add(new Card(i.next(), j.next()));
-        *
-        * // Fixed, though a bit ugly
-        * for (Iterator i = suits.iterator(); i.hasNext(); ) {
-        *     Suit suit = (Suit) i.next();
-        *     for (Iterator j = ranks.iterator(); j.hasNext(); )
-        *         sortedDeck.add(new Card(suit, j.next()));
-        * }
-        *
-        * for (Suit suit : suits)
-        *     for (Rank rank : ranks)
-        *         sortedDeck.add(new Card(suit, rank));
-        *
-        * >// Returns the sum of the elements of a>
-        * int sum(int[] a) {
-        *     int result = 0;
-        *     for (int i : a)
-        *         result += i;
-        *     return result;
-        * }
-*/

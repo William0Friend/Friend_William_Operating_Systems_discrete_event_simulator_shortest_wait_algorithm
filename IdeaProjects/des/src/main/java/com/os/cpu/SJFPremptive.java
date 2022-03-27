@@ -16,4 +16,24 @@ public class SJFPremptive extends Scheduler {
     public SJFPremptive(PCB[] pcb) {
         super(pcb);
     }
+
+    @Override
+    void normalization() {
+
+    }
+
+    @Override
+    void sortPcb() {
+
+    }
+
+    @Override
+    void resultTable() {
+
+    }
+
+    @Override
+    void preemptionTable(int i, int j, Double time) {
+
+    }
 }

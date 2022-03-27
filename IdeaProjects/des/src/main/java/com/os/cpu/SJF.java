@@ -23,6 +23,26 @@ public class SJF extends Scheduler{
 
     }
 
+    @Override
+    void normalization() {
+
+    }
+
+    @Override
+    void sortPcb() {
+
+    }
+
+    @Override
+    void resultTable() {
+
+    }
+
+    @Override
+    void preemptionTable(int i, int j, Double time) {
+
+    }
+
 
     public PCB [] pcb;
     public Queue<PCB> readyQueue = new PriorityQueue<>();
