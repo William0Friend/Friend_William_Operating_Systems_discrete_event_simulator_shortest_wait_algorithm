@@ -1,6 +1,8 @@
 package com.os.cpu;
 
 class RR extends Scheduler {
+    // round robin needs a quantum
+    private static final int quantum = 5;
     /**
      * Methods
      * # Scheduler(pcb: PCB[])
@@ -36,14 +38,5 @@ class RR extends Scheduler {
     void preemptionTable(int i, int j, Double time) {
 
     }
-    /**Data
-     * - quantum: float
-     */
 
-    /**Methods
-     * ~ RR(quantum: float, pcb: PCB[])
-     * - setParameters() : void
-     * - timeLineCalc(): float
-     * ~ run(): void
-     */
 }

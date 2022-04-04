@@ -1,6 +1,5 @@
 package com.os.cpu;
-
-import java.util.PriorityQueue;
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class SJF extends Scheduler{
@@ -17,20 +16,33 @@ public class SJF extends Scheduler{
      *
      * @param pcb
      */
+
+    //data structure to load use loaded PCB array with
+    Queue<PCB> arrivalQueue = new LinkedList<PCB>();
+    //Queue to hold all processes once processed
+    Queue<PCB> readyQueue = new LinkedList<PCB>();
+
+    PCB [] pcbl = new PCB [3];
     public SJF(PCB[] pcb) {
         super(pcb);
-
-
     }
-
     @Override
     void normalization() {
-
     }
-
     @Override
-    void sortPcb() {
+    void sortPcb(){
+    }
+    public void SortPcb(PCB[] pcb) {
+        PCB least = pcb[0];
+        for(int i = 0; i < pcb.length; i++){
+            if(pcb[i].getBurstTime() < least){
 
+            }
+            else{
+                least =
+            }
+            readyQueue.add();
+        }
     }
 
     @Override
@@ -44,8 +56,5 @@ public class SJF extends Scheduler{
     }
 
 
-    public PCB [] pcb;
-    public Queue<PCB> readyQueue = new PriorityQueue<>();
-    public Queue<PCB> waitQueue = new PriorityQueue<>();
 
 }
