@@ -12,21 +12,18 @@ public class FCFS extends Scheduler{
      * - indentation(text: String, limit: int): String
      * ~ resultTable(): void
      *
-     * @param pcb
      */
     //data structure to load use loaded PCB array with
-    Queue<PCB> arrivalQueue = new LinkedList<PCB>();
+    Queue<PCB> arrivalQueue = new LinkedList<>();
     //Queue to hold all processes once processed
-    Queue<PCB> readyQueue = new LinkedList<PCB>();
+    Queue<PCB> readyQueue;
 
-    PCB [] pcbl = new PCB [3];
+    PCB [] pcbl;
 
     public FCFS(PCB[] pcb) {
         super(pcb);
         //add all process to arrival queue on creation
-        for(PCB p : pcb) {
-            arrivalQueue.add(p);
-        }
+        Collections.addAll(arrivalQueue, pcb);
         //create duplicate array
         pcbl = pcb;
         //Since FCFS ready queue and arrival queue are identical in this instance
@@ -53,6 +50,94 @@ public class FCFS extends Scheduler{
         readyQueue = arrivalQueue;
     }
 
+    public void simpleResultTable(){
+        //implement...
+        //Initialized scheduler with 3 processes.
+        System.out.println("Initialized scheduler with 3 processes.");
+        //Policy: Round Robin
+        System.out.println("Policy: First Come First Serve ");
+        String one, two;
+        int max = pcbl.length;
+        Double currentBurst = 0.0;
+        for(int i = 0; i < pcbl.length; i++) {
+            //-> Context Change at time = 9.329
+            currentBurst += pcbl[i].getBurstTime();
+            System.out.println("-> Context Change at time = " + currentBurst);
+            if(i == 0){
+                one = "start";
+                two = pcbl[i].getName();
+            }
+            else if(i < max)
+            {
+                one = pcbl[i-1].getName();
+                two = pcbl[i].getName();
+            }
+            else if(i == max){
+                one = pcbl[max].getName();
+                two = "end";
+            }
+            else{
+                one = "start";
+                two = pcbl[i].getName();
+            }
+            System.out.println("---------------------------------------");
+            System.out.println("| Exits            | Enters           |");
+            System.out.println("---------------------------------------");
+            System.out.println("| " + one + "            | " + two + "            | ");
+        }
+        System.out.println("---------------------------------------------------------------------------");
+        System.out.println("| Process        | Wait Time | Execution Time | Arrival Time | Burst Time | Completion Time | Turn Around Time |");
+        System.out.println("---------------------------------------------------------------------------");
+        //
+        //System.out.println("|"+"Process0"+"        "+"|"+"0.000"+"      "+"|"+"3.767"+"           "+"|"+"0.000"+"         "+"|"+"3.767"+"       "+"|"+"");
+        for(PCB x : arrivalQueue) {
+            System.out.println("|" + x.getName() + "               " +
+                    "| " + x.getWaitTime() + "          " +
+                    "| " + x.getExecuted() + "          " +
+                    "| " + x.getArrivalTime() + "         " +
+                    "| " + x.getExecuted() + "          " +
+                    "| " + x.getCompletionTime() + "           " +
+                    "| " + x.getTurnAroundTime() + " |");
+        }
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+"|");
+        System.out.println("|Average         "+"|"+this.getAvgWaitTime()+"      |"+this.getAvgExecutionTime()+"           "+"|Total Burst"+"   "+"|"+this.getTotalBurstTime()+"       "+"|");
+        System.out.println("---------------------------------------------------------------------------");
+    }
+
+    public void setCompletionTimes(PCB [] pcb){
+        Double currentRuntime = 0.0;
+        for(int i=0; i<pcb.length; i++){
+            currentRuntime += pcb[i].getBurstTime();
+            pcb[i].setCompletionTime(currentRuntime);
+        }
+    }
+
+    public void setTurnAroundTimes(PCB [] pcb){
+        Double currentCompletionTime = 0.0;
+        Double currentTurnAroundTime = 0.0;
+        for(int i=0; i<pcb.length; i++){
+            currentCompletionTime += pcb[i].getBurstTime();
+            currentTurnAroundTime = currentCompletionTime - pcb[i].getArrivalTime();
+            pcb[i].setTurnAroundTime(currentTurnAroundTime);
+        }
+    }
+
+    public void setWaitTimes(PCB [] pcb) {
+        Double currentCompletionTime = 0.0;
+        Double currentTurnAroundTime = 0.0;
+        Double currentWaitTime = 0.0;
+        for (int i = 0; i < pcb.length; i++) {
+            currentCompletionTime += pcb[i].getBurstTime();
+            currentTurnAroundTime = currentCompletionTime - pcb[i].getArrivalTime();
+            currentWaitTime = currentTurnAroundTime - pcb[i].getBurstTime();
+            pcb[i].setWaitTime(currentWaitTime);
+        }
+    }
+    @Override
+    public void preemptionTable(int i, int j, Double time){
+        //implement
+        System.out.println("FCFS is none preemptive, so there is no preemptionTable");
+    }
     public void resultTable(){
         //implement...
         //Initialized scheduler with 3 processes.
@@ -62,70 +147,48 @@ public class FCFS extends Scheduler{
         //-> Context Change at time = 9.329
         //implement...
         //---------------------------------------
-        System.out.println("---------------------------------------");
-        System.out.println("| Exits            | Enters           |");
-        System.out.println("---------------------------------------");
+        String one, two;
+        for(int i = 0; i < pcbl.length; i++) {
+            if(pcbl[i - 1] == null) {
+                one = "";
+            }
+            else {
+                one = pcbl[i-1].getName();
+            }
+            if(pcbl[i] == null) {
+                two = "";
+            }
+            else {
+                two = pcbl[i].getName();
+            }
+            System.out.println("---------------------------------------");
+            System.out.println("| Exits            | Enters           |");
+            System.out.println("---------------------------------------");
+            System.out.println("| " + one + "            | " + two + "            | ");
+        }
         //for(PCB x : arrivalQueue)
-          //  System.out.println()
+        //  System.out.println()
         System.out.println("| "+ arrivalQueue.peek().getName() + "            | " + arrivalQueue.poll().getName() + "           |");
         System.out.println("---------------------------------------------------------------------------");
-        System.out.println("| Process        | Wait Time | Execution Time | Arrival Time | Burst Time |");
+        System.out.println("| Process        | Wait Time | Execution Time | Arrival Time | Burst Time |  Turn Around Time");
         System.out.println("---------------------------------------------------------------------------");
         //
         //System.out.println("|"+"Process0"+"        "+"|"+"0.000"+"      "+"|"+"3.767"+"           "+"|"+"0.000"+"         "+"|"+"3.767"+"       "+"|"+"");
         for(PCB x : arrivalQueue) {
-            System.out.println("|" + x.getName() + "        " + "|" + x.getWaitTime() + "      " + "|" + x.getExecuted() + "           " + "|" + x.getArrivalTime() + "         " + "|" + x.getBurstTime() + "       " + "|" + "");
+            System.out.println("|" + x.getName() + "        " +
+                    "|" + x.getWaitTime() + "      " +
+                    "|" + x.getExecuted() + "           " +
+                    "| " + x.getArrivalTime() + "         " +
+                    "| " + x.getExecuted() + "       " + "| " +
+                    x.getArrivalTime() + "| " +
+                    x.getArrivalTime() + " | " +
+                    x.getBurstTime() + " | " +
+                    "       " + "|" +
+                    x.getTurnAroundTime() + " |");
         }
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+"|");
         System.out.println("|Average         "+"|"+getAvgWaitTime()+"      |"+getAvgExecutionTime()+"           "+"|Total Burst"+"   "+"|"+getTotalBurstTime()+"       "+"|");
         System.out.println("---------------------------------------------------------------------------");
     }
 
-    public void simpleResultTable(){
-        //implement...
-        //Initialized scheduler with 3 processes.
-        System.out.println("Initialized scheduler with 3 processes.");
-        //Policy: Round Robin
-        System.out.println("Policy: First Come First Serve ");
-        //-> Context Change at time = 9.329
-        System.out.println("-> Context Change at time = " + pcbl[0].getBurstTime());
-        //implement...
-        //---------------------------------------
-        System.out.println("---------------------------------------");
-        System.out.println("| Exits            | Enters           |");
-        System.out.println("---------------------------------------");
-        //for(PCB x : arrivalQueue)
-        //  System.out.println()
-        System.out.println("| "+ pcbl[0].getName() +  "            | " + pcbl[1].getName() + "           |");
-        System.out.println("---------------------------------------------------------------------------");
-        System.out.println("-> Context Change at time = " + pcbl[1].getBurstTime());
-        //implement...
-        //---------------------------------------
-        System.out.println("---------------------------------------");
-        System.out.println("| Exits            | Enters           |");
-        System.out.println("---------------------------------------");
-        //for(PCB x : arrivalQueue)
-        //  System.out.println()
-        System.out.println("| "+ pcbl[1].getName() +  "            | " + pcbl[2].getName() + "           |");
-        System.out.println("---------------------------------------------------------------------------");
-        System.out.println("| Process        | Wait Time | Execution Time | Arrival Time | Burst Time | Completion Time | Turn Around Time |");
-        System.out.println("---------------------------------------------------------------------------");
-        //
-        //System.out.println("|"+"Process0"+"        "+"|"+"0.000"+"      "+"|"+"3.767"+"           "+"|"+"0.000"+"         "+"|"+"3.767"+"       "+"|"+"");
-        for(PCB x : readyQueue) {
-            System.out.println("|" + x.getName() + "        " +
-                    "|" + x.getWaitTime() + "      " + "|" +
-                    x.getExecuted() + "           " + "|" +
-                    x.getArrivalTime() + "         " + "|" +
-                    x.getBurstTime() + "       " + "|" + "      ");
-        }
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+"|");
-        System.out.println("|Average         "+"|"+this.getAvgWaitTime()+"      |"+this.getAvgExecutionTime()+"           "+"|Total Burst"+"   "+"|"+this.getTotalBurstTime()+"       "+"|");
-        System.out.println("---------------------------------------------------------------------------");
-    }
-    @Override
-    public void preemptionTable(int i, int j, Double time){
-        //implement
-        System.out.println("FCFS is none preemptive, so there is no preemptionTable");
-    }
 }

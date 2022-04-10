@@ -9,22 +9,22 @@ abstract class Scheduler {
      * - normalization: Double
      */
     //total number of processes
-    private int nProcess = 0;
+    private int nProcess;
     //to keep track of time
     private Double timeline = 0.0;
     //returns average execution time of all processes OR
     // (total execution) / nProcesses
-    private Double avgExecutionTime = 0.0;
+    private Double avgExecutionTime;
     //returns average wait time of all processes OR
     // (total wait) / nProcesses
-    private Double avgWaitTime = 0.0;
+    private Double avgWaitTime;
     // total burst time
-    private Double totalBurstTime = 0.0;
-    private Double avgBurstTime = 0.0;
+    private Double totalBurstTime;
+    private Double avgBurstTime;
     //total time (end - begin) time
-    private Double totalTime = 0.0;
+    private Double totalTime;
     //avg time = ((end - begin) / nProcess) time
-    private Double avgTime = 0.0;
+    private Double avgTime;
     //for normalizing time when it gets out of control
     //private Double normalization = 0.0;
 
@@ -43,15 +43,27 @@ abstract class Scheduler {
      * ~ preemptionTable(i: int, j: int, time: Double): void
      */
     public Scheduler(PCB [] pcb) {
+        this.nProcess = pcb.length;
+        this.avgExecutionTime = 0.0;
+        this.avgWaitTime = 0.0;
+        this.totalBurstTime = 0.0;
+        this.avgTime = 0.0;
+        this.totalTime = 0.0;
+        //this.normalization = 0.0;
+    }
+    /*
+    public Scheduler(PCB [] pcb) {
         this.setnProcess(pcb);
+        //this.nProcess = pcb.length;
         this.setAvgExecutionTime(pcb);
+        this.avgExecutionTime = 0.0;
         this.setAvgWaitTime(pcb);
         this.setTotalBurstTime(pcb);
         this.setAverageTime(pcb);
         this.setTotalTime(pcb);
         //this.normalization = 0.0;
     }
-    /*
+
     private static void setTimeline(PCB [] pcb){
         Double tl = 0.0;
         for(PCB i :  pcb) {
@@ -62,89 +74,92 @@ abstract class Scheduler {
     }
      */
     public Double getTimeline(){
-        return timeline;
+        return this.timeline;
     }
-    private void setnProcess(PCB[] pcb) {
+    public void setnProcess(PCB[] pcb) {
         //int nP = 0;
-        for(PCB i :  pcb) {
+        for(int i = 0; i < pcb.length; i++) {
             this.nProcess += 1;
         }
         //return nP;
     }
     public int getnProcess(PCB[] pcb) {
-        return nProcess;
+        return this.nProcess;
     }
     public void setAvgWaitTime(PCB [] pcb){
         Double aWT = 0.0;
-        for(PCB i :  pcb) {
-            aWT += i.getWaitTime();
+        for(int i = 0; i < pcb.length; i++) {
+            aWT = pcb[i].getWaitTime() + aWT;
         }
-        avgWaitTime = aWT / nProcess;
+        this.avgWaitTime = aWT / this.nProcess;
         //return aWT /= nProcess;
     }
     public Double getAvgWaitTime(){
-        return avgWaitTime;
+        return this.avgWaitTime;
+
     }
+
     public void setAvgExecutionTime(PCB [] pcb){
-        Double aET = 0.0;
-        try {
-            for (PCB i : pcb) {
-                aET += i.getExecuted();
+            //Double aET = null;
+            for (int i = 0; i < pcb.length; i++) {
+                //aET += i.getExecuted();
+                this.avgExecutionTime += pcb[i].getExecuted();
             }
-            avgExecutionTime = aET / nProcess;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+            if(this.avgExecutionTime != 0 && this.nProcess != 0) {
+                this.avgExecutionTime = this.avgExecutionTime / this.nProcess;
+            }
+
         //return aET /= nProcess;
     }
+
     public Double getAvgExecutionTime(){
-        return avgExecutionTime;
+        return this.avgExecutionTime;
     }
     public void setAvgBurstTime(PCB [] pcb){
         Double aBT = 0.0;
-        for(PCB i :  pcb) {
-            aBT += i.getExecuted();
+        for(int i = 0; i < pcb.length; i++) {
+            aBT += pcb[i].getExecuted();
         }
-        avgBurstTime = aBT / nProcess;
+        this.avgBurstTime = aBT / this.nProcess;
         //return aBT /= nProcess;
     }
     public Double getAvgBurstTime(){
-        return avgBurstTime;
+        return this.avgBurstTime;
     }
     public void setAverageTime(PCB [] pcb){
         //implement...
         //avgWait + avgExe = ave?
-        Double aT = avgExecutionTime + avgWaitTime;
-        avgTime = aT;
+        Double aT = this.avgExecutionTime + this.avgWaitTime;
+        this.avgTime = aT;
         //System.out.println(aT);
         //return aT;
     }
     public Double getAverageTime(){
         //implement...
-        return avgTime;
+        return this.avgTime;
     }
     public void setTotalBurstTime(PCB [] pcb){
         Double tBT = 0.0;
-        for(PCB i :  pcb) {
-            tBT += i.getBurstTime();
+        for(int i = 0; i < pcb.length; i++) {
+            tBT += pcb[i].getBurstTime();
         }
-        totalBurstTime = tBT;
+        this.totalBurstTime = tBT;
     }
     public Double getTotalBurstTime(){
-        return totalBurstTime;
+        return this.totalBurstTime;
     }
     public void setTotalTime(PCB [] pcb){
         //total wit + execution for all PCB in scheduler
         Double tWT = 0.0;
         Double tET = 0.0;
-        for(PCB x : pcb){
-            tWT += x.getWaitTime();
-            tET += x.getExecuted();
+        for(int i = 0; i < pcb.length; i++){
+            tWT += pcb[i].getWaitTime();
+            tET += pcb[i].getExecuted();
         }
-        totalTime = tWT + tET;
+        this.totalTime = tWT + tET;
     }
     public Double getTotalTime(){
-        return totalTime;
+        return this.totalTime;
     }
     public String indentation(String text, int limit) {
         //implement...

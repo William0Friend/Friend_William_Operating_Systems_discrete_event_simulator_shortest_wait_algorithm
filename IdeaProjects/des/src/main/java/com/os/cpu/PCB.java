@@ -1,8 +1,7 @@
 package com.os.cpu;
-import java.time.*;
 
 
-public class PCB {
+public class PCB{
 
 // Process State: Can be ready, running, etc.
 private boolean ready;
@@ -31,8 +30,8 @@ private boolean running;
     private String name;
     private Double burstTime;
     private Double arrivalTime;
-    private Double executed;
-    private Double waitTime;
+    private Double executed = 0.0;
+    private Double waitTime = 0.0;
     private Double remainingTime = 0.0;
     private Double beginTime = 0.0;
     private Double endTime = 0.0;
@@ -43,12 +42,13 @@ private boolean running;
 
 
     //Completion Time: Time at which process completes its execution.
-    private Double completionTime = 0.0;
+    private Double completionTime;
+
     //Turn Around Time: Time Difference between completion time and arrival time. Turn Around Time = Completion Time – Arrival Time
-    private Double turnAroundTime = 0.0;
+    private Double turnAroundTime;
     //Waiting Time(W.T): Time Difference between turn around time and burst time.
     //Waiting Time = Turn Around Time – Burst Time
-    private Double waitingTime = 0.0;
+    private Double waitingTime;
     /**
      * Methods
      * ~ getWaitTime(): Double
@@ -73,11 +73,11 @@ private boolean running;
      * {"executionTime":3.767,"arrivalTime":0.0,"burstTime":3.767,"processN":"Process2","waitTime":0.0}
     */
     public PCB(){
-        this.name = "null";
-        this.waitTime = 0.0;
-        this.executed = 0.0;
-        this.arrivalTime = 0.0;
-        this.burstTime = 0.0;
+        this.name = "99";
+        this.waitTime = 99.0;
+        this.executed = 99.0;
+        this.arrivalTime = 99.0;
+        this.burstTime = 99.0;
         //this.remainingTime = remainingTime;
         //this.beginTime = beginTime;
         //this.endTime = endTime;
@@ -94,6 +94,16 @@ private boolean running;
         this.endTime = 0.0;
         //this.remainingTime = remainingTime;
         this.remainingTime = 0.0;
+    }
+    public PCB (PCB p){
+        name = p.name;
+        burstTime = p.burstTime;
+        arrivalTime = p.arrivalTime;
+        executed = p.executed;
+        waitTime = p.waitTime;
+        remainingTime = p.remainingTime;
+        beginTime = p.beginTime;
+        endTime = p.endTime;
     }
     public void print(){
         System.out.println("[");
@@ -118,7 +128,7 @@ private boolean running;
         this.executed = executed;
     }
     public Double getExecuted(){
-        return executed;
+        return this.executed;
     }
     public void setRemainingTime(Double remainingTime){
         this.remainingTime = remainingTime;
@@ -149,16 +159,23 @@ private boolean running;
         this.name = name;
     }
     public String getName() {
+        if(name != null)
         return this.name;
-    }
-    public Double getWaitTime() {
-        return this.waitTime;
+        else{
+            return  "null getName()";
+        }
     }
     public void setWaitTime(Double waitTime) {
         this.waitTime = waitTime;
     }
+    public Double getWaitTime(){
+        return this.waitTime;
+    }
     public void setCompletionTime(Double completionTime) {
         this.completionTime = completionTime;
+    }
+    public Double getCompletionTime(){
+        return this.completionTime;
     }
     public void autoSetCompletionTime() {
         this.completionTime = waitTime + burstTime;
@@ -168,5 +185,8 @@ private boolean running;
     }
     public void autoSetTurnAroundTime() {
         this.turnAroundTime = this.waitTime + this.burstTime;
+    }
+    public Double getTurnAroundTime() {
+        return this.turnAroundTime;
     }
 }

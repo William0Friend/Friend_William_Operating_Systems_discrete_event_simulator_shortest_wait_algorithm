@@ -32,19 +32,20 @@ public class SJF extends Scheduler{
     @Override
     void sortPcb(){
     }
+/*
     public void SortPcb(PCB[] pcb) {
-        PCB least = pcb[0];
+        PCB leastPCB = pcb[0];
         for(int i = 0; i < pcb.length; i++){
-            if(pcb[i].getBurstTime() < least){
+            if((pcb[i].getBurstTime() <= leastPCB.getBurstTime())){
 
             }
             else{
-                least =
+                leastPCB = pcb[i];
             }
             readyQueue.add();
         }
     }
-
+*/
     @Override
     void resultTable() {
 
