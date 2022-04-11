@@ -228,19 +228,34 @@ class Main {
         f.setnProcess(pcb);
         f.setTotalTime(pcb);
         f.setTotalBurstTime(pcb);
-        f.setCompletionTimes(pcb);
-        f.setTurnAroundTimes(pcb);
         f.setWaitTimes(pcb);
+        f.setTurnAroundTimes(pcb);
+        f.setCompletionTimes(pcb);
         //set Averages
         f.setAvgExecutionTime(pcb);
         f.setAvgBurstTime(pcb);
         f.setAvgWaitTime(pcb);
         f.setAverageTime(pcb);
+        //run simulator
+        f.run();
         //print tableS
-        f.simpleResultTable();
-
-
-
+        f.resultTable();
+//round robin
+        RR r = new RR(pcb);
+        r.runn(pcb);
+        r.run();
+        r.resultTable(pcb);
+//Shortest job First
+        SJF s = new SJF(pcb);
+        //sort
+        s.sortPcb();
+        //set 0
+        s.setValues();
+        s.run();
+        s.resultTable();
+//Shorest job First Preemptive
+        SJFPremptive p = new SJFPremptive(pcb);
+        p.findavgTimeAndResultTable(pcb, pcb.length);
         //System.out.println("\n\n\n FCFSPriorityQueue TEST...\n\n\n");
         //test scheduler class
         //FCFSPriorityQueue fp = new FCFSPriorityQueue(pcb);

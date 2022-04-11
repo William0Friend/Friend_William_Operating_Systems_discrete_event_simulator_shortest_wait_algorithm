@@ -49,11 +49,10 @@ public class FCFS extends Scheduler{
         // it can just be copied
         readyQueue = arrivalQueue;
     }
-
-    public void simpleResultTable(){
+    public void run(){
         //implement...
         //Initialized scheduler with 3 processes.
-        System.out.println("Initialized scheduler with 3 processes.");
+        System.out.println("Initialized scheduler with "+ pcbl.length +" processes.");
         //Policy: Round Robin
         System.out.println("Policy: First Come First Serve ");
         String one, two;
@@ -61,7 +60,6 @@ public class FCFS extends Scheduler{
         Double currentBurst = 0.0;
         for(int i = 0; i < pcbl.length; i++) {
             //-> Context Change at time = 9.329
-            currentBurst += pcbl[i].getBurstTime();
             System.out.println("-> Context Change at time = " + currentBurst);
             if(i == 0){
                 one = "start";
@@ -72,7 +70,7 @@ public class FCFS extends Scheduler{
                 one = pcbl[i-1].getName();
                 two = pcbl[i].getName();
             }
-            else if(i == max){
+            else if(i == (max)){
                 one = pcbl[max].getName();
                 two = "end";
             }
@@ -84,7 +82,15 @@ public class FCFS extends Scheduler{
             System.out.println("| Exits            | Enters           |");
             System.out.println("---------------------------------------");
             System.out.println("| " + one + "            | " + two + "            | ");
+            currentBurst += pcbl[i].getBurstTime();
         }
+        System.out.println("-> Context Change at time = " + getTotalBurstTime());
+        System.out.println("---------------------------------------");
+        System.out.println("| Exits            | Enters           |");
+        System.out.println("---------------------------------------");
+        System.out.println("| " +  pcbl[max-1].getName() + "            | " + "end" + "            | ");
+    }
+    public void resultTable(){
         System.out.println("---------------------------------------------------------------------------");
         System.out.println("| Process        | Wait Time | Execution Time | Arrival Time | Burst Time | Completion Time | Turn Around Time |");
         System.out.println("---------------------------------------------------------------------------");
@@ -104,33 +110,21 @@ public class FCFS extends Scheduler{
         System.out.println("---------------------------------------------------------------------------");
     }
 
-    public void setCompletionTimes(PCB [] pcb){
-        Double currentRuntime = 0.0;
-        for(int i=0; i<pcb.length; i++){
-            currentRuntime += pcb[i].getBurstTime();
-            pcb[i].setCompletionTime(currentRuntime);
+    public void setWaitTimes(PCB [] pcb){
+        pcb[0].setWaitTime(0.00);
+        for(int i=1; i<pcb.length; i++){
+            pcb[i].setWaitTime(pcb[i-1].getWaitTime()+pcb[i-1].getBurstTime());
         }
     }
-
     public void setTurnAroundTimes(PCB [] pcb){
-        Double currentCompletionTime = 0.0;
-        Double currentTurnAroundTime = 0.0;
         for(int i=0; i<pcb.length; i++){
-            currentCompletionTime += pcb[i].getBurstTime();
-            currentTurnAroundTime = currentCompletionTime - pcb[i].getArrivalTime();
-            pcb[i].setTurnAroundTime(currentTurnAroundTime);
+            pcb[i].setTurnAroundTime(pcb[i].getBurstTime() + pcb[i].getWaitTime());
         }
     }
-
-    public void setWaitTimes(PCB [] pcb) {
-        Double currentCompletionTime = 0.0;
-        Double currentTurnAroundTime = 0.0;
-        Double currentWaitTime = 0.0;
-        for (int i = 0; i < pcb.length; i++) {
-            currentCompletionTime += pcb[i].getBurstTime();
-            currentTurnAroundTime = currentCompletionTime - pcb[i].getArrivalTime();
-            currentWaitTime = currentTurnAroundTime - pcb[i].getBurstTime();
-            pcb[i].setWaitTime(currentWaitTime);
+    public void setCompletionTimes(PCB [] pcb){
+        for(int i=0; i<pcb.length; i++){
+            pcb[i].setCompletionTime(pcb[i].getTurnAroundTime() +
+                    pcb[i].getArrivalTime());
         }
     }
     @Override
@@ -138,10 +132,10 @@ public class FCFS extends Scheduler{
         //implement
         System.out.println("FCFS is none preemptive, so there is no preemptionTable");
     }
-    public void resultTable(){
+    public void ResultTable(){
         //implement...
         //Initialized scheduler with 3 processes.
-        System.out.println("Initialized scheduler with 3 processes.");
+        System.out.println("Initialized scheduler with "+ pcbl.length + " processes.");
         //Policy: Round Robin
         System.out.println("Policy: First Come First Serve ");
         //-> Context Change at time = 9.329
@@ -149,7 +143,7 @@ public class FCFS extends Scheduler{
         //---------------------------------------
         String one, two;
         for(int i = 0; i < pcbl.length; i++) {
-            if(pcbl[i - 1] == null) {
+            if(pcbl[i - 1] == null ) {
                 one = "";
             }
             else {

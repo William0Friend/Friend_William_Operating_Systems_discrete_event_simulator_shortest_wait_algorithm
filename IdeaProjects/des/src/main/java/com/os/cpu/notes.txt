@@ -215,3 +215,37 @@ Quantum: 3.0
 //for (JSONObject object : (Iterable<JSONObject>) proc) {
 //    System.out.println(object);
 //}
+    public void setCompletionTimesOld(PCB [] pcb){
+        Double currentCompletionTime = 0.0;
+        Double currentArrivalTime = 0.0;
+        Double lastArrivalTime = pcb[0].getArrivalTime();
+        Double difference = 0.0;
+        for(int i=0; i==pcb.length; i++){
+            currentArrivalTime = pcb[i].getArrivalTime();
+            if(currentArrivalTime > lastArrivalTime){
+                difference = currentArrivalTime - lastArrivalTime;
+                lastArrivalTime = currentArrivalTime;
+                currentCompletionTime += pcb[i].getBurstTime() + difference;
+            }
+            else{
+                currentCompletionTime += pcb[i].getBurstTime();
+            }
+            pcb[i].setCompletionTime(currentCompletionTime);
+        }
+    }
+
+    public void setTurnAroundTimesOld(PCB [] pcb){
+        Double currentTurnAroundTime = 0.0;
+        for(int i=0; i<pcb.length; i++){
+            currentTurnAroundTime = pcb[i].getCompletionTime() - pcb[i].getArrivalTime();
+            pcb[i].setTurnAroundTime(currentTurnAroundTime);
+        }
+    }
+
+    public void setWaitTimesOld(PCB [] pcb) {
+        Double currentWaitTime = 0.0;
+        for (int i = 0; i < pcb.length; i++) {
+            currentWaitTime = pcb[i].getTurnAroundTime() - pcb[i].getBurstTime();
+            pcb[i].setWaitTime(currentWaitTime);
+        }
+    }

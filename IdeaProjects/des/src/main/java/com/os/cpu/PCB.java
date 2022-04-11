@@ -13,7 +13,7 @@ private boolean running;
     public boolean ioStatus;
 //CPU scheduling information:
     private int priority;
-
+private boolean completed;
     /**
      *  Data
      * - name : String
@@ -35,9 +35,6 @@ private boolean running;
     private Double remainingTime = 0.0;
     private Double beginTime = 0.0;
     private Double endTime = 0.0;
-    public PCB(String name) {
-        this.name = name;
-    }
 
 
 
@@ -49,6 +46,8 @@ private boolean running;
     //Waiting Time(W.T): Time Difference between turn around time and burst time.
     //Waiting Time = Turn Around Time – Burst Time
     private Double waitingTime;
+
+    private Double temp_burstTime;
     /**
      * Methods
      * ~ getWaitTime(): Double
@@ -74,13 +73,15 @@ private boolean running;
     */
     public PCB(){
         this.name = "99";
-        this.waitTime = 99.0;
-        this.executed = 99.0;
-        this.arrivalTime = 99.0;
-        this.burstTime = 99.0;
+        this.waitTime = 0.0;
+        this.executed = 0.0;
+        this.arrivalTime = 0.0;
+        this.burstTime = 0.0;
+        this.temp_burstTime = 0.0;
         //this.remainingTime = remainingTime;
         //this.beginTime = beginTime;
         //this.endTime = endTime;
+        this.completed = false;
     }
     public PCB(String name, Double waitTime,Double executed, Double arrivalTime, Double burstTime ){
         this.name = name;
@@ -94,6 +95,8 @@ private boolean running;
         this.endTime = 0.0;
         //this.remainingTime = remainingTime;
         this.remainingTime = 0.0;
+        this.temp_burstTime = burstTime;
+        this.completed = false;
     }
     public PCB (PCB p){
         name = p.name;
@@ -104,6 +107,8 @@ private boolean running;
         remainingTime = p.remainingTime;
         beginTime = p.beginTime;
         endTime = p.endTime;
+        temp_burstTime = p.temp_burstTime;
+        completed = p.completed;
     }
     public void print(){
         System.out.println("[");
@@ -114,7 +119,8 @@ private boolean running;
                          "BurstTime: " + this.burstTime + "\n" +
                          "RemainingTime: " + this.remainingTime + "\n" +
                          "BeginTime: " + this.beginTime + "\n" +
-                         "EndTime: " + this.endTime + "\n");
+                         "EndTime: " + this.endTime + "\n" +
+                        "Completed: " + this.completed + "\n");
         System.out.println("]");
         System.out.println();
     }
@@ -188,5 +194,20 @@ private boolean running;
     }
     public Double getTurnAroundTime() {
         return this.turnAroundTime;
+    }
+    public void setTempBurstTime(Double temp_burstTime) {
+        this.temp_burstTime = temp_burstTime;
+    }
+
+    public Double getTempBurstTime() {
+        return this.temp_burstTime;
+    }
+
+    public void setComplete(boolean completed) {
+        this.completed = completed;
+    }
+
+    public boolean getComplete(){
+        return this.completed;
     }
 }
