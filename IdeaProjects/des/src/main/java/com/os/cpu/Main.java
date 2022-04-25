@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileReader;
+import java.text.DecimalFormat;
 import java.util.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -12,9 +13,183 @@ import org.json.simple.parser.ParseException;
 class Main {
     public static void main(String[] args) {
 //write process.json
-/*
 //processesJSON2.json
-*/
+        ArrayList<PCB> pcbArray = new ArrayList<PCB>(9);
+        pcbArray = create10Process();
+
+
+        //get process count
+        System.out.println("Enter number of processes: ");
+        Scanner scanner;
+        scanner = new Scanner(System.in);
+        int processCount;
+        processCount = scanner.nextInt();
+        ArrayList<PCB> pcbArrayRandom = new ArrayList<PCB>(processCount);
+        pcbArrayRandom = createRandomProcess(processCount);
+
+        /*
+        for(PCB pcb : pcbArray){
+            pcb.print();
+        }
+
+         */
+        /////
+        //create static array
+        /////////
+        PCB [] pcb = pcbArray.toArray(new PCB[0]);
+       //random
+        PCB [] pcbRandom = pcbArrayRandom.toArray(new PCB[0]);
+        //dynamically create array size of array list option
+        //PCB [] pcbd = new PCB[pcbArray.size()];
+        ////
+        //fill static array
+        ///
+        //pcbArray = Arrays.asList(pcb);
+        //check pcb
+        for (int i = 0; i < pcbRandom.length; i++){
+            pcbRandom[i].print();
+        }
+        //random check pcb
+        for (int i = 0; i < pcb.length; i++){
+            pcb[i].print();
+        }
+//Check FCFS
+        System.out.println("\n\n\n FCFS TEST...\n\n\n");
+        //test scheduler class
+        FCFS f = new FCFS(pcb);
+        //f.resultTable();
+        //set values
+        f.setnProcess(pcb);
+        f.setTotalTime(pcb);
+        f.setTotalBurstTime(pcb);
+        f.setWaitTimes(pcb);
+        f.setTurnAroundTimes(pcb);
+        f.setCompletionTimes(pcb);
+        //set Averages
+        f.setAvgExecutionTime(pcb);
+        f.setAvgBurstTime(pcb);
+        f.setAvgWaitTime(pcb);
+        f.setAverageTime(pcb);
+        //run simulator
+        f.run();
+        //print tableS
+        f.resultTable();
+//round robin
+        RR r = new RR(pcb);
+        r.runn(pcb);
+        r.run();
+        r.resultTable(pcb);
+//Shortest job First
+        SJF s = new SJF(pcb);
+        //sort
+        s.sortPcb();
+        //set 0
+        s.setValues();
+        s.run();
+        s.resultTable();
+//Shorest job First Preemptive
+        SJFPremptive p = new SJFPremptive(pcb);
+        p.findavgTimeAndResultTable(pcb, pcb.length);
+        //System.out.println("\n\n\n FCFSPriorityQueue TEST...\n\n\n");
+        //sort
+        p.sortPcb();
+        //set 0
+        p.setValues();
+        p.run();
+        p.resultTable();
+        //test scheduler class
+        //FCFSPriorityQueue fp = new FCFSPriorityQueue(pcb);
+        //f.resultTable();
+        //fp.simpleResultTable();
+
+    }
+    public static ArrayList<PCB> createRandomProcess(int processCount){
+
+        JSONArray processArrayList = new JSONArray();
+        //Create user chosen # of processes
+        for (int i = 0; i < processCount; i++) {
+            JSONObject processDetailsObj0 = new JSONObject();
+            //DecimalFormat numberFormat = new DecimalFormat("##.###");
+
+            DecimalFormat numberFormat = new DecimalFormat("#");
+            String processName = numberFormat.format(i);
+            processDetailsObj0.put("ProcessN", processName);
+            processDetailsObj0.put("waitTime", 0.000);
+
+            Double randomExecutionTime = Math.random();
+            processDetailsObj0.put("executionTime", randomExecutionTime);
+
+            Double randomArrivalTime = Double.valueOf(i);
+            processDetailsObj0.put("arrivalTime", randomArrivalTime);
+
+            Double randomBurstTime = randomExecutionTime;
+            processDetailsObj0.put("burstTime", randomExecutionTime);
+
+            JSONObject jsonProcessObject0 = new JSONObject();
+            jsonProcessObject0.put("process", processDetailsObj0);
+            //Add employees to list
+            processArrayList.add(jsonProcessObject0);
+        }
+
+        //Write JSON file
+        try (FileWriter file = new FileWriter("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/randomProcesses.json")) {
+            //try (FileWriter file = new FileWriter("employees.json")) {
+            //We can write any JSONArray or JSONObject instance to the file
+            file.write(processArrayList.toJSONString());
+            file.flush();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+/*
+// read processesJSON2.json
+ */
+        //
+//JSON parser object to parse read file
+        JSONParser jsonParser2 = new JSONParser();
+        try (FileReader reader = new FileReader("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/randomProcesses.json")) {
+            //try (FileReader reader = new FileReader("employees.json"))
+            //{
+            //Read JSON file
+            Object obj = jsonParser2.parse(reader);
+            JSONArray processArrayList2 = (JSONArray) obj;
+            processArrayList2.forEach(pro -> parseProcessObject((JSONObject) pro));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        List<PCB> pcbArray = new ArrayList<PCB>();
+        try (FileReader jsonReader = new FileReader("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/randomProcesses.json")) {
+            //Read JSON file
+            Object obj = jsonParser2.parse(jsonReader);
+            JSONArray jsonArray = (JSONArray) obj;
+            //PCB array to hold return
+            pcbArray = new ArrayList<PCB>(processCount);
+            //Iterate over process array
+            //Lambda should use final so created constant copy
+            List<PCB> finalPcbArray = pcbArray;
+            jsonArray.forEach(json -> finalPcbArray.add(createProcessControlBlockFromJson((JSONObject) json)));
+            //Print out and verify pcbArray which can now be given to scheduler
+            pcbArray = finalPcbArray;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return (ArrayList<PCB>) pcbArray;
+    }
+    public static ArrayList<PCB> create10Process(){
         //First Process
         JSONObject processDetailsObj0 = new JSONObject();
         processDetailsObj0.put("ProcessN", "0");
@@ -171,7 +346,7 @@ class Main {
             Object obj = jsonParser2.parse(jsonReader);
             JSONArray jsonArray = (JSONArray) obj;
             //PCB array to hold return
-           pcbArray = new ArrayList<PCB>(9);
+            pcbArray = new ArrayList<PCB>(9);
             //Iterate over process array
             //Lambda should use final so created constant copy
             List<PCB> finalPcbArray = pcbArray;
@@ -190,7 +365,7 @@ class Main {
             }
 
              */
-        pcbArray = finalPcbArray;
+            pcbArray = finalPcbArray;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -198,104 +373,33 @@ class Main {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-//Check json
-        /*
-        for(PCB pcb : pcbArray){
-            pcb.print();
-        }
-
-         */
-//Check FCFS
-        System.out.println("\n\n\n FCFS TEST...\n\n\n");
-        /////
-        //create static array
-        /////////
-        PCB [] pcb = pcbArray.toArray(new PCB[0]);
-        //dynamically create array size of array list option
-        //PCB [] pcbd = new PCB[pcbArray.size()];
-        ////
-        //fill static array
-        ///
-        //pcbArray = Arrays.asList(pcb);
-        //check pcb
-        for (int i = 0; i < pcb.length; i++){
-            pcb[i].print();
-        }
-        //test scheduler class
-        FCFS f = new FCFS(pcb);
-        //f.resultTable();
-        //set values
-        f.setnProcess(pcb);
-        f.setTotalTime(pcb);
-        f.setTotalBurstTime(pcb);
-        f.setWaitTimes(pcb);
-        f.setTurnAroundTimes(pcb);
-        f.setCompletionTimes(pcb);
-        //set Averages
-        f.setAvgExecutionTime(pcb);
-        f.setAvgBurstTime(pcb);
-        f.setAvgWaitTime(pcb);
-        f.setAverageTime(pcb);
-        //run simulator
-        f.run();
-        //print tableS
-        f.resultTable();
-//round robin
-        RR r = new RR(pcb);
-        r.runn(pcb);
-        r.run();
-        r.resultTable(pcb);
-//Shortest job First
-        SJF s = new SJF(pcb);
-        //sort
-        s.sortPcb();
-        //set 0
-        s.setValues();
-        s.run();
-        s.resultTable();
-//Shorest job First Preemptive
-        SJFPremptive p = new SJFPremptive(pcb);
-        p.findavgTimeAndResultTable(pcb, pcb.length);
-        //System.out.println("\n\n\n FCFSPriorityQueue TEST...\n\n\n");
-        //test scheduler class
-        //FCFSPriorityQueue fp = new FCFSPriorityQueue(pcb);
-        //f.resultTable();
-        //fp.simpleResultTable();
-
+        return (ArrayList<PCB>) pcbArray;
     }
-    //List<PCB> pcbAL = new ArrayList<>();
-    //Queue<PCB> rQueue = new PriorityQueue<>();
-    //Queue<PCB> wQueue = new PriorityQueue<>();
-    //Queue<PCB> aQueue = new PriorityQueue<>();
-    //Contents of array 'pcbArr' are written to, but never read
-        /* Example JSON
-          {"executionTime":3.767,"arrivalTime":0.0,"burstTime":3.767,"processN":"Process0","waitTime":0.0}
-          {"executionTime":1.904,"arrivalTime":4.763,"burstTime":1.904,"processN":"Process1","waitTime":0.0}
-          {"executionTime":3.767,"arrivalTime":0.0,"burstTime":3.767,"processN":"Process2","waitTime":0.0}
-         */
-       /*
-        //Create 3 PCB to hold the processes
-        PCB pcb0 = new PCB();
-        PCB pcb1 = new PCB();
-        PCB pcb2 = new PCB();
-        //Create PCB array for easy looping
-        List<PCB> pcbArrList = new ArrayList<PCB>();
-        pcbArrList.add(pcb0);//pcb0); //=pcb0;
-        pcbArrList.add(pcb1); //=pcb1;
-        pcbArrList.add(pcb2); //=pcb2;
-        for (PCB x : pcbArrList) {
-            System.out.println("Starting \"Check PCB Object\"...");
-            x.print();
-            System.out.println("Ending \"Check PCB Object\"...");
-        }
 
-        */
-    /*
-    JSONObject jObj = jsonParser2.parse(reader);
-        for(PCB y : pcbArrList){
-            setProcessControlBlock(y);
-        }
-*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     private static void parseProcessObject(JSONObject proc) {
         //Get
         JSONObject processObject = (JSONObject) proc.get("process");

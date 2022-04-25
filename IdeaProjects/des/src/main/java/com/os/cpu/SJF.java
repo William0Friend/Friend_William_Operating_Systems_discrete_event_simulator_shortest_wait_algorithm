@@ -19,14 +19,15 @@ public class SJF extends Scheduler {
      */
 
     //data structure to load use loaded PCB array with
-    Queue<PCB> arrivalQueue = new LinkedList<PCB>();
+    //Queue<PCB> arrivalQueue = new LinkedList<PCB>();
     //Queue to hold all processes once processed
-    ArrayList<PCB> sjfQ = new ArrayList<PCB>();
+
+    //ArrayList<PCB> sjfQ = new ArrayList<PCB>();
     PCB[] pcb_copy;
 
     public SJF(PCB[] pcb) {
         super(pcb);
-        pcb_copy = new PCB[pcb.length];
+        //pcb_copy = new PCB[pcb.length];
         pcb_copy = pcb;
     }
 
