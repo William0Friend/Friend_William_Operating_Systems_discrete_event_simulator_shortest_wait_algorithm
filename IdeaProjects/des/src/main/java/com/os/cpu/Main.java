@@ -14,8 +14,8 @@ class Main {
     public static void main(String[] args) {
 //write process.json
 //processesJSON2.json
-        pcbArray = create10Process();
         ArrayList<PCB> pcbArray = new ArrayList<PCB>(9);
+        pcbArray = create10Process();
 
 
         //get process count
@@ -25,7 +25,7 @@ class Main {
         int processCount;
         processCount = scanner.nextInt();
         ArrayList<PCB> pcbArrayRandom = new ArrayList<PCB>(processCount);
-        pcbArrayRandom = createRandomProcessFunc(processCount);
+        pcbArrayRandom = createRandomProcess(processCount);
 
         /*
         for(PCB pcb : pcbArray){
@@ -103,69 +103,33 @@ class Main {
         //fp.simpleResultTable();
 
     }
-
-
-    public static ArrayList<PCB> createRandomProcessFunc(int processCount){
+    public static ArrayList<PCB> createRandomProcess(int processCount){
 
         JSONArray processArrayList = new JSONArray();
         //Create user chosen # of processes
         for (int i = 0; i < processCount; i++) {
             JSONObject processDetailsObj0 = new JSONObject();
+            //DecimalFormat numberFormat = new DecimalFormat("##.###");
 
             DecimalFormat numberFormat = new DecimalFormat("#");
             String processName = numberFormat.format(i);
             processDetailsObj0.put("ProcessN", processName);
             processDetailsObj0.put("waitTime", 0.000);
 
-/*
-            Random random = new Random();
-
-            for(int i = 1; i <=10; i++) {
-                int value = random.nextInt((10 - 1) + 1) + 1;
-            }
-*/
-            int min = 1;
-            int max = 10;
-
-            Random random = new Random();
-            Double randomExecutionTime = random.nextDouble(max + min) + min;
-/*
-            Double randomExecutionTime = 0.0;
-            randomExecutionTime = 1 + Math.random();
-            randomExecutionTime *= 1;
-
- */
-            randomExecutionTime = Double.valueOf(Math.round(randomExecutionTime));
+            Double randomExecutionTime = Math.random();
             processDetailsObj0.put("executionTime", randomExecutionTime);
 
             Double randomArrivalTime = Double.valueOf(i);
             processDetailsObj0.put("arrivalTime", randomArrivalTime);
 
             Double randomBurstTime = randomExecutionTime;
-            processDetailsObj0.put("burstTime", randomBurstTime);
+            processDetailsObj0.put("burstTime", randomExecutionTime);
 
             JSONObject jsonProcessObject0 = new JSONObject();
             jsonProcessObject0.put("process", processDetailsObj0);
             //Add employees to list
             processArrayList.add(jsonProcessObject0);
         }
-
-        //Write JSON file
-        try (FileWriter file = new FileWriter("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/randomProcesses.json")) {
-            //try (FileWriter file = new FileWriter("employees.json")) {
-            //We can write any JSONArray or JSONObject instance to the file
-            file.write(processArrayList.toJSONString());
-            file.flush();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
 
         //Write JSON file
         try (FileWriter file = new FileWriter("/home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/src/main/java/com/os/cpu/randomProcesses.json")) {
@@ -225,7 +189,7 @@ class Main {
         }
         return (ArrayList<PCB>) pcbArray;
     }
-    public static void create10Process(){
+    public static ArrayList<PCB> create10Process(){
         //First Process
         JSONObject processDetailsObj0 = new JSONObject();
         processDetailsObj0.put("ProcessN", "0");
@@ -387,6 +351,20 @@ class Main {
             //Lambda should use final so created constant copy
             List<PCB> finalPcbArray = pcbArray;
             jsonArray.forEach(json -> finalPcbArray.add(createProcessControlBlockFromJson((JSONObject) json)));
+            //Print out and verify pcbArray which can now be given to scheduler
+            /*
+            System.out.println("Starting \"Verifying pcbArray and createPCB()\"...");
+            int count = 0;
+
+            for (PCB x : pcbArray) {
+                System.out.println("Start PCB at index " + count + ": ");
+                x.print();
+                System.out.println("End PCB at index " + count);
+                count += 1;
+                pcbArray = finalPcbArray;
+            }
+
+             */
             pcbArray = finalPcbArray;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
