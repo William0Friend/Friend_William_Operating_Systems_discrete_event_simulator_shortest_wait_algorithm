@@ -9,7 +9,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
+//This version prints out a rough terminal out put but that is leftover
+//The important thing here is that it creates the csv
+//This only prints result tables and creates the csv files
 class Main {
     public static void main(String[] args) throws IOException {
 //write process.json
@@ -45,9 +47,9 @@ class Main {
         }
 //Check FCFS
 
-        System.out.println("\n\n\n FCFS TEST...\n\n\n");
+        System.out.println("\n\n\n FCFS TEST...START\n\n\n");
         //test scheduler class
-        FCFS f = new FCFS(pcb);
+        FCFS_FileCreator f = new FCFS_FileCreator(pcb);
         //f.resultTable();
         //set values
         f.setnProcess(pcb);
@@ -61,41 +63,37 @@ class Main {
         f.setAvgBurstTime(pcb);
         f.setAvgWaitTime(pcb);
         f.setAverageTime(pcb);
-        //run simulator
-        f.run();
         //print tableS
         f.resultTable();
+        System.out.println("\n\n\n FCFS TEST...DONE\n\n\n");
 //Write to file
 f.fileResults(pcb);
         //Shortest job First
-        SJF s = new SJF(pcb);
+        System.out.println("\n\n\n SJF TEST...START\n\n\n");
+        SJF_FileCreator s = new SJF_FileCreator(pcb);
         //sort
         s.sortPcb();
         //set 0
         s.setValues();
-        s.run();
         s.resultTable();
+        System.out.println("\n\n\n SJF TEST...DONE\n\n\n");
 //Write to file
 s.fileResults();
         //Shorest job First Preemptive
-        SJFPremptive p = new SJFPremptive(pcb);
+        System.out.println("\n\n\n SJFPreemptive TEST...START\n\n\n");
+        SJFPremptive_FileCreator p = new SJFPremptive_FileCreator(pcb);
         //sort
         p.sortPcb();
         //set 0
         p.setValues();
-        p.run();
         p.resultTable();
-//Write to file
 p.fileResults();
+        System.out.println("\n\n\n SJFPreemptive TEST...DONE\n\n\n");
 //round robin
-        //RR2 r = new RR2(pcb);
-        //r.sortAndTable(pcb);
-        //r.run();
-        //r.fileResultss(pcb);
-        //r.fileResults(pcb);
-        //r.resultTable(pcb);
-        RR4 r = new RR4(pcb_copy);
+        System.out.println("\n\n\n RR TEST...START\n\n\n");
+        RR_FileCreator r = new RR_FileCreator(pcb_copy);
         r.SortAndTable(pcb_copy);
+        System.out.println("\n\n\n RR TEST...DONE\n\n\n");
 
 //Write to file
 ///        r.fileResults(pcb);

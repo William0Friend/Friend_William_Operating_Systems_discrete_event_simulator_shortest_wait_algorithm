@@ -25,7 +25,7 @@ public class SJFPremptive_FileCreator extends Scheduler {
     private Double totalTurn;
 //    Double[] tat;
 
-    public SJFPremptive(PCB[] pcb) {
+    public SJFPremptive_FileCreator(PCB[] pcb) {
         super(pcb);
         //pcb_copy = new PCB[pcb.length];
         pcb_copy = pcb;

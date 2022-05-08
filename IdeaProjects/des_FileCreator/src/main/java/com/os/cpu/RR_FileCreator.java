@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.*;
 
 
-public class RR4{
+public class RR_FileCreator{
     int a;
     int b;
     int w;
@@ -21,7 +21,7 @@ public class RR4{
     PCB[] pcb_copy;
     //private static Scanner inp = new Scanner(System.in);
     //Driver Code
-    RR4 (PCB [] pcb){
+    RR_FileCreator (PCB [] pcb){
         pcb_copy = pcb;
     }
     public void SortAndTable(PCB [] pcb){

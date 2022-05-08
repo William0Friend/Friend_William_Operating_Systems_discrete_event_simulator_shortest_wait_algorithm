@@ -25,6 +25,8 @@ import org.json.simple.parser.ParseException;
 // if you want to access to read over them
 // A COPY OF THE _FileCreator JAVA FILES ARE UNDER cpu_FileCreator
 // I think if you want to build and run them they will eventually be runnable under a branch whenever I can figure out aa way around the size limit
+// this verison will do everything in the terminal, I think even better then the one for the files I designed, but it is definitely slower.
+// Even though you/re done grading this I am going to make it more user friendly
 class Main {
     public static void main(String[] args) {
 //write process.json

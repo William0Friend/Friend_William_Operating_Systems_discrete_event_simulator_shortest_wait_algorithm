@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.*;
 //import java.util.PriorityQueue;
 
-public class FCFS extends Scheduler{
+public class FCFS_FileCreator extends Scheduler{
     /**
      * Methods
      * # Scheduler(pcb: PCB[])
@@ -25,7 +25,7 @@ public class FCFS extends Scheduler{
     PCB [] pcbl;
     private Double totalTurn;
 
-    public FCFS(PCB[] pcb) {
+    public FCFS_FileCreator(PCB[] pcb) {
         super(pcb);
         //add all process to arrival queue on creation
         Collections.addAll(arrivalQueue, pcb);

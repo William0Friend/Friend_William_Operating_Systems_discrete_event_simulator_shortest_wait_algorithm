@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class SJF extends Scheduler {
+public class SJF_FileCreator extends Scheduler {
 
     /**
      * Methods
@@ -31,11 +31,24 @@ public class SJF extends Scheduler {
     PCB[] pcb_copy;
     private Double totalTurn;
 
-    public SJF(PCB[] pcb) {
+public SJF_FileCreator(PCB[] pcb) {
         super(pcb);
         //pcb_copy = new PCB[pcb.length];
         pcb_copy = pcb;
     }
+
+    /**
+     * Methods
+     * # Scheduler(pcb: PCB[])
+     * - normalization() void
+     * ~ sortPcb(): void
+     * ~ averageTime(): void
+     * - indentation(text: String, limit: int): String
+     * ~ resultTable(): void
+     * ~ preemptionTable(i: int, j: int, time: Double): void
+     *
+     * @param pcb
+     */
 
     @Override
     void normalization() {

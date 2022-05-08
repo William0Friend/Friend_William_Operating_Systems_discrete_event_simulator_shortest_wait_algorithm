@@ -8,7 +8,7 @@ import java.util.List;
 
 import com.opencsv.CSVWriter;
 
-public class RR2 extends Scheduler {
+class RR2 {
     // round robin needs a quantum
     private static final int quantum = 2;
     int tempQuantum = quantum;
@@ -43,7 +43,7 @@ public class RR2 extends Scheduler {
     PCB[] pcb_copy;
 
     public RR2(PCB[] pcb) throws IOException {
-        super(pcb);
+        //super(pcb);
         //Double timer = 0.0;
         //arrival = pcb;
         temp_burstD = new Double[pcb.length];
@@ -481,22 +481,18 @@ public class RR2 extends Scheduler {
     }
 
 
-    @Override
     void normalization() {
 
     }
 
-    @Override
     void sortPcb() {
 
     }
 
-    @Override
     void resultTable() {
 
     }
 
-    @Override
     void preemptionTable(int i, int j, Double time) {
 
     }

@@ -2,7 +2,7 @@ package com.os.cpu;
 
 // Java program for implementation of RR scheduling
 
-public class RR3
+class RR3
 {
     RR3(PCB [] pcb){
 
