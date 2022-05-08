@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.FileReader;
 import java.text.DecimalFormat;
 import java.util.*;
+
+import com.opencsv.CSVWriter;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -102,6 +104,49 @@ class Main {
         //f.resultTable();
         //fp.simpleResultTable();
 
+
+
+        FCFS fr = new FCFS(pcbRandom);
+        //f.resultTable();
+        //set values
+        fr.setnProcess(pcbRandom);
+        fr.setTotalTime(pcbRandom);
+        fr.setTotalBurstTime(pcbRandom);
+        fr.setWaitTimes(pcbRandom);
+        fr.setTurnAroundTimes(pcbRandom);
+        fr.setCompletionTimes(pcbRandom);
+        //set Averages
+        fr.setAvgExecutionTime(pcbRandom);
+        fr.setAvgBurstTime(pcbRandom);
+        fr.setAvgWaitTime(pcbRandom);
+        fr.setAverageTime(pcbRandom);
+        //run simulator
+        fr.run();
+        //print tableS
+        fr.resultTable();
+//round robin
+        RR rr = new RR(pcbRandom);
+        r.runn(pcbRandom);
+        r.run();
+        r.resultTable(pcbRandom);
+//Shortest job First
+        SJF sr = new SJF(pcbRandom);
+        //sort
+        sr.sortPcb();
+        //set 0
+        sr.setValues();
+        sr.run();
+        sr.resultTable();
+//Shorest job First Preemptive
+        SJFPremptive pr = new SJFPremptive(pcbRandom);
+        p.findavgTimeAndResultTable(pcbRandom, pcbRandom.length);
+        //System.out.println("\n\n\n FCFSPriorityQueue TEST...\n\n\n");
+        //sort
+        pr.sortPcb();
+        //set 0
+        pr.setValues();
+        pr.run();
+        pr.resultTable();
     }
     public static ArrayList<PCB> createRandomProcess(int processCount){
 
@@ -117,6 +162,8 @@ class Main {
             processDetailsObj0.put("waitTime", 0.000);
 
             Double randomExecutionTime = Math.random();
+            randomExecutionTime *= 10;
+            randomExecutionTime = Math.floor(randomExecutionTime);
             processDetailsObj0.put("executionTime", randomExecutionTime);
 
             Double randomArrivalTime = Double.valueOf(i);

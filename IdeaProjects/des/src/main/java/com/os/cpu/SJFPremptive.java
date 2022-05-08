@@ -1,6 +1,11 @@
 package com.os.cpu;
 
+import com.opencsv.CSVWriter;
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SJFPremptive extends Scheduler {
     /**
@@ -270,6 +275,68 @@ public class SJFPremptive extends Scheduler {
         }
     }
 */
+    public void fileResults() {
+//Instantiating the CSVWriter class
+        CSVWriter writer = null;
+        try {
+            //writer = new CSVWriter(new FileWriter("home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/rr.csv"));
+            writer = new CSVWriter(new FileWriter("sjf.csv"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        //Instantiating the List Object
+        List list = new ArrayList();
+        //Writing data to a csv file
+        String line1[] = {"id", "arrival", "burst", "wait", "burst", "turn"};
+        list.add(line1);
+        for(PCB x : pcb_copy) {
+
+            String id = x.getName();
+            String arrival = Double.toString(x.getArrivalTime() );
+            String exe = Double.toString(x.getExecuted());
+            String wait = String.valueOf(x.getWaitTime());
+            String burst = String.valueOf(x.getExecuted());
+            String turn = Double.toString(x.getTurnAroundTime());
+            String line2[] = {id, arrival, exe, wait, burst, turn};
+            list.add(line2);
+        }
+        Double aveWait = 0.0;
+        Double aveTurn = 0.0;
+        Double aveBurst = 0.0;
+        Double totalBurst = 0.0;
+        Double totalTurn = 0.0;
+        //get average turn around time
+        //setAvgTurn(pcb_copy);
+        //aveTurn = getAvgTurn();
+        aveTurn = 0.0;
+        //get average burst time
+        setAvgBurstTime(pcb_copy);
+        aveBurst += getAvgBurstTime();
+        //get total burst tim
+        setTotalBurstTime(pcb_copy);
+        totalBurst += getTotalBurstTime();
+        //get average wait time
+        setAvgWaitTime(pcb_copy);
+        aveWait =  getAvgWaitTime();
+        String line3[] = {"aveW", "aveT", "aveB", "totalB", "totalT"};
+        list.add(line3);
+        String aveW = Double.toString(aveWait);
+        String aveT = Double.toString(aveTurn);
+        String aveB = Double.toString(aveBurst);
+        String totalB = Double.toString(totalBurst);
+        String totalT = Double.toString(totalTurn);
+        String line4[] = {aveW, aveT, aveB, totalB, totalT};
+        list.add(line4);
+        //Writing data to the csv file
+        writer.writeAll(list);
+        try {
+            writer.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Data entered");
+
+    }
 
     @Override
     void preemptionTable(int i, int j, Double time) {
