@@ -1,8 +1,11 @@
 package com.os.cpu;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-
+import com.opencsv.CSVWriter;
+import java.io.IOException;
+import java.util.List;
 public class SJF extends Scheduler {
 
     /**
@@ -119,6 +122,85 @@ public class SJF extends Scheduler {
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "|");
         System.out.println("|Average         " + "|" + this.getAvgWaitTime() + "      |" + this.getAvgExecutionTime() + "           " + "|Total Burst" + "   " + "|" + this.getTotalBurstTime() + "       " + "|");
         System.out.println("---------------------------------------------------------------------------");
+    }
+    public void resultTableFile() {
+        System.out.println("| Process        | Wait Time | Execution Time | Arrival Time | Burst Time | Completion Time | Turn Around Time |");
+        //
+        //System.out.println("|"+"Process0"+"        "+"|"+"0.000"+"      "+"|"+"3.767"+"           "+"|"+"0.000"+"         "+"|"+"3.767"+"       "+"|"+"");
+        for (int i = 0; i < pcb_copy.length; i++) {
+            System.out.println("|" + pcb_copy[i].getName() + "               " +
+                    "| " + pcb_copy[i].getWaitTime() + "          " +
+                    "| " + pcb_copy[i].getExecuted() + "          " +
+                    "| " + pcb_copy[i].getArrivalTime() + "         " +
+                    "| " + pcb_copy[i].getExecuted() + "          " +
+                    "| " + pcb_copy[i].getCompletionTime() + "           " +
+                    "| " + pcb_copy[i].getTurnAroundTime() + " |");
+        }
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "|");
+        System.out.println("|Average         " + "|" + this.getAvgWaitTime() + "      |" + this.getAvgExecutionTime() + "           " + "|Total Burst" + "   " + "|" + this.getTotalBurstTime() + "       " + "|");
+        System.out.println("---------------------------------------------------------------------------");
+    }
+    public void fileResults() {
+//Instantiating the CSVWriter class
+        CSVWriter writer = null;
+        try {
+            //writer = new CSVWriter(new FileWriter("home/break/tools/gits/des/Friend_William_Operating_Systems_discrete_event_simulator_shortest_wait_algorithm/IdeaProjects/des/rr.csv"));
+            writer = new CSVWriter(new FileWriter("sjf.csv"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        //Instantiating the List Object
+        List list = new ArrayList();
+        //Writing data to a csv file
+        String line1[] = {"id", "arrival", "burst", "wait", "burst", "turn"};
+        list.add(line1);
+        for(PCB x : pcb_copy) {
+
+            String id = x.getName();
+            String arrival = Double.toString(x.getArrivalTime() );
+            String exe = Double.toString(x.getExecuted());
+            String wait = String.valueOf(x.getWaitTime());
+            String burst = String.valueOf(x.getExecuted());
+            String turn = Double.toString(x.getTurnAroundTime());
+            String line2[] = {id, arrival, exe, wait, burst, turn};
+            list.add(line2);
+        }
+        Double aveWait = 0.0;
+        Double aveTurn = 0.0;
+        Double aveBurst = 0.0;
+        Double totalBurst = 0.0;
+        Double totalTurn = 0.0;
+        //get average turn around time
+        //setAvgTurn(pcb_copy);
+        //aveTurn = getAvgTurn();
+        aveTurn= 0.0;
+        //get average burst time
+        setAvgBurstTime(pcb_copy);
+        aveBurst += getAvgBurstTime();
+        //get total burst tim
+        setTotalBurstTime(pcb_copy);
+        totalBurst += getTotalBurstTime();
+        //get average wait time
+        setAvgWaitTime(pcb_copy);
+        aveWait =  getAvgWaitTime();
+        String line3[] = {"aveW", "aveT", "aveB", "totalB", "totalT"};
+        list.add(line3);
+        String aveW = Double.toString(aveWait);
+        String aveT = Double.toString(aveTurn);
+        String aveB = Double.toString(aveBurst);
+        String totalB = Double.toString(totalBurst);
+        String totalT = Double.toString(totalTurn);
+        String line4[] = {aveW, aveT, aveB, totalB, totalT};
+        list.add(line4);
+        //Writing data to the csv file
+        writer.writeAll(list);
+        try {
+            writer.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Data entered");
+
     }
 
     public void setUniversalArrivalTime() {
