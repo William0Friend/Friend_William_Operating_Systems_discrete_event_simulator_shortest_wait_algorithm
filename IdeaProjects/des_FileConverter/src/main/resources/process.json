@@ -1,0 +1,29 @@
+[
+{
+  "process": {
+    "processN": "Process0",
+    "waitTime": 0.000,
+    "executionTime": 3.767,
+    "arrivalTime": 0.000,
+    "burstTime": 3.767
+  }
+},
+{
+  "process": {
+    "processN": "Process1",
+    "waitTime":0.000,
+    "executionTime": 1.904,
+    "arrivalTime": 4.763,
+    "burstTime": 1.904
+}
+},
+  {
+    "process": {
+      "processN": "Process2",
+      "waitTime": 0.000,
+      "executionTime": 3.767,
+      "arrivalTime": 0.000,
+      "burstTime": 3.767
+    }
+  }
+]

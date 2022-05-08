@@ -1,8 +1,8 @@
 package com.os.cpu;
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//This round robin was my fourth attempt and is specifically for generating many many processes.
-//This add them to a file
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+//JAVA Program for implementing
+//Round Robin Algorithm
+
 import com.opencsv.CSVWriter;
 
 import java.io.FileWriter;

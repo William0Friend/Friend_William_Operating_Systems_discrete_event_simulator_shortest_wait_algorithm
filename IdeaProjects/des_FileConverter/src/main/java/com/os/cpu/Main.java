@@ -5,74 +5,46 @@ import java.io.IOException;
 import java.io.FileReader;
 import java.text.DecimalFormat;
 import java.util.*;
-
-import com.opencsv.CSVWriter;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-///////////////////////
-//ATTENTION!!!!!!!!!!PROFESSOR!!!!!!!!!!!!!!!!!
-//This is proof of concept that you can run in the terminal to see the simulator
-//The almost identical versions where over 1000 processes can be generated to csv will be
-//under cpu_FileCreator
-//I saved this one and made it easy for you because until I get better at braching this is the best I can do
-// if you clone the branch backup that should run the file creator
-// under (RR|SJF||FCFS||SJFPremptive|)_FileCreator.java
-// the ability to see the code and run either this branch which is main or the _FileCreator versions is hopefully ok
-// the _FileCreator branch became so big I would have to sign up to special github for large files in order to push it
-// to the repository, hopefully this will work
-// if you want to access to read over them
-// A COPY OF THE _FileCreator JAVA FILES ARE UNDER cpu_FileCreator
-// I think if you want to build and run them they will eventually be runnable under a branch whenever I can figure out aa way around the size limit
+
 class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 //write process.json
 //processesJSON2.json
-        //ArrayList<PCB> pcbArray = new ArrayList<PCB>(9);
+        //ArrayList<PCB> pcbArray;
         //pcbArray = create10Process();
-
-
         //get process count
+
         System.out.println("Enter number of processes: ");
         Scanner scanner;
         scanner = new Scanner(System.in);
         int processCount;
         processCount = scanner.nextInt();
-        ArrayList<PCB> pcbArrayRandom;
-        pcbArrayRandom = createRandomProcess(processCount);
+        ArrayList<PCB> pcbArray;
+        pcbArray = createRandomProcess(processCount);
 
-        /*
-        for(PCB pcb : pcbArray){
-            pcb.print();
-        }
-
-         */
         /////
         //create static array
         /////////
-        //PCB [] pcb = pcbArray.toArray(new PCB[0]);
-       //random
-        PCB [] pcbRandom = pcbArrayRandom.toArray(new PCB[0]);
-        PCB [] pcbRandomSJFP = pcbArrayRandom.toArray(new PCB[0]);
+        PCB [] pcb = pcbArray.toArray(new PCB[0]);
+        PCB[] pcb_copy = pcbArray.toArray(new PCB[0]);
         //dynamically create array size of array list option
         //PCB [] pcbd = new PCB[pcbArray.size()];
         ////
         //fill static array
-        /*
+        ///
         //pcbArray = Arrays.asList(pcb);
         //check pcb
-        for (int i = 0; i < pcbRandom.length; i++){
-            pcbRandom[i].print();
-        }
+
         //random check pcb
-        for (int i = 0; i < pcb.length; i++){
-            pcb[i].print();
+        for (PCB value : pcb) {
+            value.print();
         }
-*/
-        //handmade process
-        /*
 //Check FCFS
+
         System.out.println("\n\n\n FCFS TEST...\n\n\n");
         //test scheduler class
         FCFS f = new FCFS(pcb);
@@ -93,14 +65,9 @@ class Main {
         f.run();
         //print tableS
         f.resultTable();
-//round robin
-        System.out.println("\n\n\n Round Robin \n\n\n");
-        RR r = new RR(pcb);
-        r.runn(pcb);
-        r.run();
-        r.resultTable(pcb);
-//Shortest job First..
-        System.out.println("\n\n\n Shortest Job First \n\n\n");
+//Write to file
+f.fileResults(pcb);
+        //Shortest job First
         SJF s = new SJF(pcb);
         //sort
         s.sortPcb();
@@ -108,69 +75,35 @@ class Main {
         s.setValues();
         s.run();
         s.resultTable();
-//Shorest job First Preemptive
-        System.out.println("\n\n\n Shortest Job First Premptive\n\n\n");
+//Write to file
+s.fileResults();
+        //Shorest job First Preemptive
         SJFPremptive p = new SJFPremptive(pcb);
-        p.findavgTimeAndResultTable(pcb, pcb.length);
-        //System.out.println("\n\n\n FCFSPriorityQueue TEST...\n\n\n");
         //sort
         p.sortPcb();
         //set 0
         p.setValues();
         p.run();
         p.resultTable();
-        //test scheduler class
-        //FCFSPriorityQueue fp = new FCFSPriorityQueue(pcb);
-        //f.resultTable();
-        //fp.simpleResultTable();
-*/
-
-//randomized process
-        System.out.println("\n\n\n FCFS TEST Random ...\n\n\n");
-        FCFS fr = new FCFS(pcbRandom);
-        //f.resultTable();
-        //set values
-        fr.setnProcess(pcbRandom);
-        fr.setTotalTime(pcbRandom);
-        fr.setTotalBurstTime(pcbRandom);
-        fr.setWaitTimes(pcbRandom);
-        fr.setTurnAroundTimes(pcbRandom);
-        fr.setCompletionTimes(pcbRandom);
-        //set Averages
-        fr.setAvgExecutionTime(pcbRandom);
-        fr.setAvgBurstTime(pcbRandom);
-        fr.setAvgWaitTime(pcbRandom);
-        fr.setAverageTime(pcbRandom);
-        //run simulator
-        fr.run();
-        //print tableS
-        fr.resultTable();
+//Write to file
+p.fileResults();
 //round robin
-        System.out.println("\n\n\n Round Robin \n\n\n");
-        RR rr = new RR(pcbRandom);
-        rr.runn(pcbRandom);
-        rr.run();
-        rr.resultTable(pcbRandom);
-//Shortest job First
-        System.out.println("\n\n\n Shortest Job First \n\n\n");
-        SJF sr = new SJF(pcbRandom);
-        //sort
-        sr.sortPcb();
-        //set 0
-        sr.setValues();
-        sr.run();
-        sr.resultTable();
-//Shorest job First Preemptive
-        System.out.println("\n\n\n Shortest Job First Premptive\n\n\n");
-        SJFPremptive pr = new SJFPremptive(pcbRandomSJFP);
-        //pr.findavgTimeAndResultTable(pcbRandomSJFP, pcbRandom.length);
-        //System.out.println("\n\n\n FCFSPriorityQueue TEST...\n\n\n");
-        //sort
-        pr.sortPcb();
-        //set 0
-        pr.setValues();
-        pr.run();
-        pr.resultTable();
+        //RR2 r = new RR2(pcb);
+        //r.sortAndTable(pcb);
+        //r.run();
+        //r.fileResultss(pcb);
+        //r.fileResults(pcb);
+        //r.resultTable(pcb);
+        RR4 r = new RR4(pcb_copy);
+        r.SortAndTable(pcb_copy);
+
+//Write to file
+///        r.fileResults(pcb);
+
+
+
+        //r.run();
+
     }
     public static ArrayList<PCB> createRandomProcess(int processCount){
 
@@ -178,23 +111,38 @@ class Main {
         //Create user chosen # of processes
         for (int i = 0; i < processCount; i++) {
             JSONObject processDetailsObj0 = new JSONObject();
-            //DecimalFormat numberFormat = new DecimalFormat("##.###");
 
             DecimalFormat numberFormat = new DecimalFormat("#");
             String processName = numberFormat.format(i);
             processDetailsObj0.put("ProcessN", processName);
             processDetailsObj0.put("waitTime", 0.000);
 
-            Double randomExecutionTime = Math.random();
-            randomExecutionTime *= 10;
-            randomExecutionTime = Math.floor(randomExecutionTime);
+/*
+            Random random = new Random();
+
+            for(int i = 1; i <=10; i++) {
+                int value = random.nextInt((10 - 1) + 1) + 1;
+            }
+*/
+            int min = 1;
+            int max = 10;
+
+            Random random = new Random();
+            Double randomExecutionTime = random.nextDouble(max + min) + min;
+/*
+            Double randomExecutionTime = 0.0;
+            randomExecutionTime = 1 + Math.random();
+            randomExecutionTime *= 1;
+
+ */
+            randomExecutionTime = Double.valueOf(Math.round(randomExecutionTime));
             processDetailsObj0.put("executionTime", randomExecutionTime);
 
             Double randomArrivalTime = Double.valueOf(i);
             processDetailsObj0.put("arrivalTime", randomArrivalTime);
 
             Double randomBurstTime = randomExecutionTime;
-            processDetailsObj0.put("burstTime", randomExecutionTime);
+            processDetailsObj0.put("burstTime", randomBurstTime);
 
             JSONObject jsonProcessObject0 = new JSONObject();
             jsonProcessObject0.put("process", processDetailsObj0);
@@ -265,7 +213,7 @@ class Main {
         JSONObject processDetailsObj0 = new JSONObject();
         processDetailsObj0.put("ProcessN", "0");
         processDetailsObj0.put("waitTime", 0.000);
-        processDetailsObj0.put("executionTime", 1.000);
+        processDetailsObj0.put("executionTime", 15.000);
         processDetailsObj0.put("arrivalTime", 0.000);
         processDetailsObj0.put("burstTime", 1.000);
 
@@ -276,7 +224,7 @@ class Main {
         JSONObject processDetailsObj1 = new JSONObject();
         processDetailsObj1.put("ProcessN", "1");
         processDetailsObj1.put("waitTime", 0.000);
-        processDetailsObj1.put("executionTime", 3.000);
+        processDetailsObj1.put("executionTime", 55.000);
         processDetailsObj1.put("arrivalTime", 2.000);
         processDetailsObj1.put("burstTime", 3.000);
 
@@ -297,7 +245,7 @@ class Main {
         JSONObject processDetailsObj3 = new JSONObject();
         processDetailsObj3.put("ProcessN", "3");
         processDetailsObj3.put("waitTime", 0.000);
-        processDetailsObj3.put("executionTime", 10.000);
+        processDetailsObj3.put("executionTime", 99.000);
         processDetailsObj3.put("arrivalTime", 4.000);
         processDetailsObj3.put("burstTime", 10.000);
 
@@ -417,7 +365,7 @@ class Main {
             Object obj = jsonParser2.parse(jsonReader);
             JSONArray jsonArray = (JSONArray) obj;
             //PCB array to hold return
-            pcbArray = new ArrayList<PCB>(9);
+            pcbArray = new ArrayList<PCB>();
             //Iterate over process array
             //Lambda should use final so created constant copy
             List<PCB> finalPcbArray = pcbArray;
